@@ -1,0 +1,548 @@
+This file is a merged representation of the entire codebase, combined into a single document by Repomix.
+
+<file_summary>
+This section contains a summary of this file.
+
+<purpose>
+This file contains a packed representation of the entire repository's contents.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.
+</purpose>
+
+<file_format>
+The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Repository files (if enabled)
+5. Multiple file entries, each consisting of:
+  - File path as an attribute
+  - Full contents of the file
+</file_format>
+
+<usage_guidelines>
+- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.
+</usage_guidelines>
+
+<notes>
+- Some files may have been excluded based on .gitignore rules and Repomix's configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Files matching patterns in .gitignore are excluded
+- Files matching default ignore patterns are excluded
+- Files are sorted by Git change count (files with more changes are at the bottom)
+</notes>
+
+</file_summary>
+
+<directory_structure>
+main.py
+</directory_structure>
+
+<files>
+This section contains the contents of the repository's files.
+
+<file path="main.py">
+"""
+Face Recognition API — FastAPI + face_recognition (dlib)
+=========================================================
+SECURITY FIX: False Positive Prevention
+----------------------------------------
+ROOT CAUSES OF FALSE POSITIVES (previously):
+  1. files_ok == 0 → auto-approved when stored images couldn't be processed
+  2. Central-crop fallback → random region encoded when face detection failed,
+     producing garbage embeddings that accidentally matched
+  3. Threshold confusion → 1.0 - distance != "similarity" in a reliable way
+  4. No minimum face count → 0 valid registered images = automatic pass
+FIXES APPLIED:
+  1. files_ok == 0 → STRICT REJECTION (match=False)
+  2. Central-crop fallback REMOVED from verification path entirely
+     (kept only in /encode legacy endpoint where it's acceptable)
+  3. Pure distance-based threshold (lower = more similar, 0.0 = identical)
+     DISTANCE_THRESHOLD = 0.45 (strict) — adjust to 0.50 for some leniency
+  4. Minimum 1 valid stored image required, otherwise REJECTED
+  5. ALL 3 stored images must be attempted; best distance wins
+  6. Detailed per-image logging for debugging
+THRESHOLD GUIDE (dlib 128-d Euclidean distance):
+  < 0.40 → near-certain same person
+  < 0.45 → very confident (RECOMMENDED for security)
+  < 0.50 → confident
+  < 0.55 → lenient (default in many demos — TOO LOOSE for attendance)
+  > 0.60 → almost certainly different people
+WHY FALSE POSITIVES HAPPENED:
+  The central-crop fallback extracts a 128-d embedding from an arbitrary
+  image region (not a detected face). Two garbage embeddings from the same
+  region of two different people's photos can accidentally land close in
+  128-d space — especially if lighting/background is similar. This is why
+  two different people matched. The fix is simple: if no face is detected,
+  REJECT — do not guess.
+Install:
+  pip install fastapi uvicorn face_recognition numpy pillow python-multipart
+Run:
+  uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+"""
+from fastapi import FastAPI, UploadFile, File, Form, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
+import face_recognition
+import numpy as np
+import os
+import logging
+from PIL import Image, ImageEnhance, ImageFilter
+import io
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(message)s"
+)
+logger = logging.getLogger(__name__)
+app = FastAPI(title="Face Recognition API — Strict Anti-Spoof")
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+FACES_DIR = "face_data"
+os.makedirs(FACES_DIR, exist_ok=True)
+# ── THRESHOLDS ─────────────────────────────────────────────────────────────
+#
+# dlib Euclidean distance between 128-d face embeddings:
+#   0.0  = identical (same photo)
+#   0.40 = near-certain same person
+#   0.45 = very confident same person  ← USE THIS for attendance security
+#   0.50 = probably same person
+#   0.55 = might be same person (too loose for secure use)
+#   0.60+ = likely different people
+#
+# IMPORTANT: lower number = MORE similar = STRICTER threshold
+# Setting DISTANCE_THRESHOLD = 0.45 means only distances < 0.45 pass.
+#
+DISTANCE_THRESHOLD = 0.45   # <-- tune this: lower = stricter, higher = more lenient
+MAX_IMAGE_WIDTH = 800        # resize cap before encoding (reduces RAM + speeds up)
+# ─────────────────────────────────────────────────────────────────────────
+# PREPROCESSING
+# ─────────────────────────────────────────────────────────────────────────
+def _fix_exif_rotation(pil_img: Image.Image) -> Image.Image:
+    """Rotate image according to EXIF orientation tag (mobile cameras set this)."""
+    try:
+        exif = pil_img._getexif()
+        if exif:
+            orient = exif.get(274)  # 274 = Orientation tag
+            if orient == 3:
+                pil_img = pil_img.rotate(180, expand=True)
+            elif orient == 6:
+                pil_img = pil_img.rotate(270, expand=True)
+            elif orient == 8:
+                pil_img = pil_img.rotate(90, expand=True)
+    except Exception:
+        pass
+    return pil_img
+def _preprocess(pil_img: Image.Image) -> Image.Image:
+    """Fix EXIF → RGB → resize → mild sharpen for JPEG artifact reduction."""
+    pil_img = _fix_exif_rotation(pil_img)
+    pil_img = pil_img.convert("RGB")
+    w, h = pil_img.size
+    if w > MAX_IMAGE_WIDTH:
+        ratio = MAX_IMAGE_WIDTH / w
+        pil_img = pil_img.resize((MAX_IMAGE_WIDTH, int(h * ratio)), Image.LANCZOS)
+        logger.debug(f"  Resized {w}x{h} → {pil_img.size}")
+    # Mild unsharp mask — reduces JPEG blocking that confuses HOG
+    pil_img = pil_img.filter(
+        ImageFilter.UnsharpMask(radius=1, percent=80, threshold=3)
+    )
+    return pil_img
+def _to_array(pil_img: Image.Image) -> np.ndarray:
+    return np.array(pil_img.convert("RGB"))
+# ─────────────────────────────────────────────────────────────────────────
+# MULTI-STRATEGY FACE DETECTION
+# ─────────────────────────────────────────────────────────────────────────
+def _detect_face_locations(rgb: np.ndarray) -> list:
+    """
+    Try 6 strategies to detect a face.
+    Returns [(top, right, bottom, left), ...] or [] if ALL strategies fail.
+    NOTE: We intentionally return [] on failure — callers MUST treat
+    an empty result as "no face found" and reject the image.
+    The old central-crop fallback has been REMOVED because it caused
+    false positives with non-face regions matching by accident.
+    """
+    h, w = rgb.shape[:2]
+    pil = Image.fromarray(rgb)
+    # S1 — standard HOG, 1× upsample
+    locs = face_recognition.face_locations(rgb, model="hog",
+                                           number_of_times_to_upsample=1)
+    if locs:
+        logger.info(f"    [S1-HOG-1x] {len(locs)} face(s) detected")
+        return locs
+    # S2 — HOG with 2× upsample (finds smaller/more distant faces)
+    locs = face_recognition.face_locations(rgb, model="hog",
+                                           number_of_times_to_upsample=2)
+    if locs:
+        logger.info(f"    [S2-HOG-2x] {len(locs)} face(s) detected")
+        return locs
+    # S3 — downsample to 50% (very close-up selfies where face fills frame)
+    half = _to_array(pil.resize((max(1, w // 2), max(1, h // 2)), Image.LANCZOS))
+    locs_h = face_recognition.face_locations(half, model="hog",
+                                             number_of_times_to_upsample=1)
+    if locs_h:
+        locs = [(t * 2, r * 2, b * 2, l * 2) for t, r, b, l in locs_h]
+        logger.info(f"    [S3-50%] {len(locs)} face(s) detected")
+        return locs
+    # S4 — upsample to 150% (face is small in a wide shot)
+    big = _to_array(pil.resize((int(w * 1.5), int(h * 1.5)), Image.LANCZOS))
+    locs_b = face_recognition.face_locations(big, model="hog",
+                                             number_of_times_to_upsample=1)
+    if locs_b:
+        locs = [(int(t / 1.5), int(r / 1.5), int(b / 1.5), int(l / 1.5))
+                for t, r, b, l in locs_b]
+        logger.info(f"    [S4-150%] {len(locs)} face(s) detected")
+        return locs
+    # S5 — brightness boost (dark/underexposed selfie)
+    bright = _to_array(ImageEnhance.Brightness(pil).enhance(1.5))
+    locs = face_recognition.face_locations(bright, model="hog",
+                                           number_of_times_to_upsample=1)
+    if locs:
+        logger.info(f"    [S5-bright] {len(locs)} face(s) detected")
+        return locs
+    # S6 — small rotations (head tilt compensation)
+    for angle in [-10, 10, -20, 20]:
+        rot = _to_array(pil.rotate(angle, expand=False))
+        locs = face_recognition.face_locations(rot, model="hog",
+                                               number_of_times_to_upsample=1)
+        if locs:
+            logger.info(f"    [S6-rot{angle:+d}°] {len(locs)} face(s) detected")
+            return locs
+    # ALL strategies failed — return empty (caller must reject)
+    logger.warning("    ⚠️  All 6 detection strategies failed — no face found")
+    return []
+# ─────────────────────────────────────────────────────────────────────────
+# FACE ENCODING — STRICT (no fallback)
+# ─────────────────────────────────────────────────────────────────────────
+def _encode_strict(rgb: np.ndarray):
+    """
+    Detect face → pick largest → compute 128-d dlib embedding.
+    STRICT: Returns (None, error_message) if no face is detected.
+    No central-crop fallback — this is intentional to prevent false positives.
+    Returns:
+        (np.ndarray, None)  on success
+        (None, str)         on failure — caller should log and skip
+    """
+    locs = _detect_face_locations(rgb)
+    if not locs:
+        return None, "No face detected in image"
+    # If multiple faces found, take the largest (by area)
+    if len(locs) > 1:
+        logger.info(f"    Multiple faces ({len(locs)}) — selecting largest")
+        locs = [max(locs, key=lambda loc: (loc[2] - loc[0]) * (loc[1] - loc[3]))]
+    encs = face_recognition.face_encodings(rgb, known_face_locations=locs)
+    if not encs:
+        return None, "Face detected but encoding failed (try better lighting)"
+    return encs[0], None
+def encode_from_bytes(image_bytes: bytes):
+    """Load image bytes, preprocess, encode. Returns (encoding|None, error|None)."""
+    try:
+        pil = Image.open(io.BytesIO(image_bytes))
+    except Exception as e:
+        return None, f"Cannot decode image: {e}"
+    pil = _preprocess(pil)
+    return _encode_strict(_to_array(pil))
+def encode_from_path(path: str):
+    """
+    Load image from file path, preprocess, encode.
+    Tries absolute path, then CWD-relative, then parent-CWD-relative.
+    Returns (encoding|None, error|None).
+    """
+    original = path.strip()
+    candidates = [
+        original,
+        os.path.join(os.getcwd(), original),
+        os.path.join(os.path.dirname(os.getcwd()), original),
+    ]
+    resolved = next((c for c in candidates if os.path.exists(c)), None)
+    if resolved is None:
+        logger.error(f"    ❌ File not found: {original}")
+        logger.error(f"       Tried: {candidates}")
+        return None, f"File not found: {original}"
+    logger.info(f"    Loading stored image: {resolved}")
+    try:
+        pil = Image.open(resolved)
+    except Exception as e:
+        return None, f"Cannot open image at {resolved}: {e}"
+    pil = _preprocess(pil)
+    return _encode_strict(_to_array(pil))
+# ─────────────────────────────────────────────────────────────────────────
+# DISTANCE-BASED COMPARISON
+# ─────────────────────────────────────────────────────────────────────────
+def face_distance(enc_stored: np.ndarray, enc_live: np.ndarray) -> float:
+    """
+    Compute dlib Euclidean distance between two face embeddings.
+    LOWER = MORE SIMILAR:
+      0.0  = identical
+      0.45 = strong match (same person, different day/lighting)
+      0.60 = borderline
+      0.80+ = clearly different people
+    This function returns the raw distance — callers compare against
+    DISTANCE_THRESHOLD directly. No inversion to "similarity score" to
+    avoid confusion.
+    """
+    dist = float(face_recognition.face_distance([enc_stored], enc_live)[0])
+    logger.info(
+        f"    Distance: {dist:.4f}  "
+        f"Threshold: {DISTANCE_THRESHOLD}  "
+        f"Pass: {dist < DISTANCE_THRESHOLD}"
+    )
+    return dist
+# ─────────────────────────────────────────────────────────────────────────
+# PRIMARY VERIFICATION ENDPOINT
+# ─────────────────────────────────────────────────────────────────────────
+@app.post("/api/face/verify")
+async def verify_face(
+    empId: str = Form(...),
+    faceImagePaths: str = Form(...),
+    photo: UploadFile = File(...),
+):
+    """
+    POST /api/face/verify
+    Compares a live selfie against all stored face images for an employee.
+    Security rules (strict):
+      - If live photo has no detectable face → REJECT
+      - If stored paths are empty → REJECT
+      - If ALL stored images fail to load or have no face → REJECT
+      - Only PASS if at least one stored image encodes AND distance < threshold
+    False positive prevention:
+      - No fallback encoding (garbage embeddings caused old false positives)
+      - files_ok == 0 → REJECT, not auto-approve
+      - Threshold 0.45 is tight (demos use 0.6 which is too loose)
+    """
+    logger.info("=" * 60)
+    logger.info(f"▶ /api/face/verify  empId={empId}")
+    logger.info(f"  photo filename: {photo.filename}")
+    logger.info(f"  stored paths: {faceImagePaths}")
+    logger.info("=" * 60)
+    # ── Step 1: Encode the live selfie ───────────────────────────────────
+    live_bytes = await photo.read()
+    if not live_bytes:
+        logger.error("  ❌ Empty photo uploaded")
+        raise HTTPException(status_code=400, detail="Empty photo uploaded")
+    logger.info(f"  Live photo size: {len(live_bytes)} bytes")
+    logger.info("  Encoding live photo...")
+    live_enc, live_err = encode_from_bytes(live_bytes)
+    if live_enc is None:
+        logger.error(f"  ❌ Live photo encoding failed: {live_err}")
+        return {
+            "match": False,
+            "score": 0.0,
+            "distance": 9.99,
+            "message": (
+                f"Could not detect a face in your live photo: {live_err}. "
+                "Please face the camera directly in good lighting with your "
+                "face clearly visible."
+            ),
+        }
+    logger.info("  ✅ Live photo encoded successfully")
+    # ── Step 2: Parse stored image paths ─────────────────────────────────
+    paths = [p.strip() for p in faceImagePaths.split(",") if p.strip()]
+    logger.info(f"  Stored image count: {len(paths)}")
+    if not paths:
+        # SECURITY: No registered images → REJECT (old code auto-approved!)
+        logger.warning("  ❌ SECURITY REJECT: No stored face paths provided")
+        return {
+            "match": False,
+            "score": 0.0,
+            "distance": 9.99,
+            "message": (
+                "No registered face images found for this employee. "
+                "Please complete face registration before checking in."
+            ),
+        }
+    # ── Step 3: Compare live encoding against each stored image ──────────
+    best_distance = 9.99   # worst possible (very far apart)
+    files_ok = 0            # count of images that encoded successfully
+    for i, path in enumerate(paths):
+        logger.info(f"  ── Stored image {i+1}/{len(paths)}: {os.path.basename(path)}")
+        stored_enc, stored_err = encode_from_path(path)
+        if stored_enc is None:
+            # Log why this image was skipped but DON'T auto-approve
+            logger.warning(f"    ⚠️  Skipping — {stored_err}")
+            continue
+        files_ok += 1
+        dist = face_distance(stored_enc, live_enc)
+        logger.info(
+            f"    Image {i+1}: distance={dist:.4f}  "
+            f"{'✅ MATCH' if dist < DISTANCE_THRESHOLD else '❌ NO MATCH'}"
+        )
+        if dist < best_distance:
+            best_distance = dist
+    logger.info(f"  ── Summary: files_ok={files_ok}  best_distance={best_distance:.4f}")
+    # ── Step 4: Strict decision logic ────────────────────────────────────
+    if files_ok == 0:
+        # SECURITY: Could not process ANY stored image → REJECT
+        # Old code auto-approved here — this was the main false positive source!
+        logger.warning("  ❌ SECURITY REJECT: No stored images could be encoded")
+        return {
+            "match": False,
+            "score": 0.0,
+            "distance": 9.99,
+            "message": (
+                "Could not read any registered face images for this employee. "
+                "The stored images may be corrupt, missing, or inaccessible. "
+                "Please re-register your face."
+            ),
+        }
+    # Final match decision: distance must be strictly below threshold
+    matched = best_distance < DISTANCE_THRESHOLD
+    # Convert distance to a 0–1 "confidence score" for the frontend display
+    # (purely cosmetic — the decision is made on distance, not this score)
+    display_score = round(max(0.0, 1.0 - best_distance), 4)
+    logger.info(
+        f"  ── RESULT: empId={empId}  "
+        f"best_dist={best_distance:.4f}  "
+        f"threshold={DISTANCE_THRESHOLD}  "
+        f"match={matched}"
+    )
+    if matched:
+        return {
+            "match": True,
+            "score": display_score,
+            "distance": round(best_distance, 4),
+            "message": "Face verified successfully",
+        }
+    else:
+        return {
+            "match": False,
+            "score": display_score,
+            "distance": round(best_distance, 4),
+            "message": (
+                f"Face does not match registered images "
+                f"(distance={best_distance:.3f}, threshold={DISTANCE_THRESHOLD}). "
+                "Please ensure: good lighting, face the camera directly, "
+                "remove glasses or hat if worn during registration."
+            ),
+        }
+# ─────────────────────────────────────────────────────────────────────────
+# HEALTH CHECK
+# ─────────────────────────────────────────────────────────────────────────
+@app.get("/health")
+async def health():
+    return {
+        "status": "ok",
+        "message": "Face recognition service running (strict anti-spoof mode)",
+        "distance_threshold": DISTANCE_THRESHOLD,
+        "note": (
+            f"Faces with distance < {DISTANCE_THRESHOLD} are accepted. "
+            f"Lower threshold = stricter. No fallback encoding."
+        ),
+    }
+# ─────────────────────────────────────────────────────────────────────────
+# LEGACY ENDPOINTS — kept for compatibility
+# ─────────────────────────────────────────────────────────────────────────
+@app.post("/encode")
+async def encode_face(username: str, file: UploadFile = File(...)):
+    """Store a face encoding for a username (used by legacy /compare flow)."""
+    logger.info(f"POST /encode — username={username}")
+    if not file.content_type or not file.content_type.startswith("image/"):
+        raise HTTPException(status_code=400, detail="File must be an image")
+    image_bytes = await file.read()
+    if not image_bytes:
+        raise HTTPException(status_code=400, detail="Empty file")
+    enc, err = encode_from_bytes(image_bytes)
+    if enc is None:
+        raise HTTPException(status_code=422, detail=f"Could not encode face: {err}")
+    np.save(os.path.join(FACES_DIR, f"{username}.npy"), enc)
+    logger.info(f"  Saved encoding for {username}")
+    return {"message": "Face stored successfully", "username": username}
+@app.post("/compare")
+async def compare_faces(username: str, file: UploadFile = File(...)):
+    """Compare a face against a stored encoding."""
+    logger.info(f"POST /compare — username={username}")
+    enc_path = os.path.join(FACES_DIR, f"{username}.npy")
+    if not os.path.exists(enc_path):
+        raise HTTPException(status_code=404,
+                            detail=f"No registered face for: {username}")
+    image_bytes = await file.read()
+    if not image_bytes:
+        raise HTTPException(status_code=400, detail="Empty file")
+    new_enc, err = encode_from_bytes(image_bytes)
+    if new_enc is None:
+        raise HTTPException(status_code=422, detail=f"Could not encode face: {err}")
+    stored = np.load(enc_path)
+    dist = face_distance(stored, new_enc)
+    matched = dist < DISTANCE_THRESHOLD
+    return {
+        "match": matched,
+        "distance": round(dist, 4),
+        "score": round(max(0.0, 1.0 - dist), 4),
+        "threshold": DISTANCE_THRESHOLD,
+        "username": username,
+    }
+@app.delete("/delete/{username}")
+async def delete_face(username: str):
+    enc_path = os.path.join(FACES_DIR, f"{username}.npy")
+    if os.path.exists(enc_path):
+        os.remove(enc_path)
+        return {"message": f"Deleted face data for {username}"}
+    raise HTTPException(status_code=404, detail="No face data for this user")
+@app.get("/users")
+async def list_registered_users():
+    users = [f[:-4] for f in os.listdir(FACES_DIR) if f.endswith(".npy")]
+    return {"registered_users": users, "count": len(users)}
+# ─────────────────────────────────────────────────────────────────────────
+# DEBUG ENDPOINT — remove in production
+# ─────────────────────────────────────────────────────────────────────────
+@app.post("/debug/encode-test")
+async def debug_encode(file: UploadFile = File(...)):
+    """
+    Test endpoint: upload an image and see if a face can be detected.
+    Use this to verify stored images are working before a real check-in.
+    DELETE this endpoint in production.
+    """
+    image_bytes = await file.read()
+    enc, err = encode_from_bytes(image_bytes)
+    if enc is None:
+        return {
+            "success": False,
+            "error": err,
+            "tip": "Try: better lighting, face camera directly, remove glasses",
+        }
+    return {
+        "success": True,
+        "encoding_shape": list(enc.shape),
+        "encoding_norm": float(np.linalg.norm(enc)),
+        "message": "Face detected and encoded successfully",
+    }
+@app.post("/debug/compare-two")
+async def debug_compare_two(
+    file1: UploadFile = File(...),
+    file2: UploadFile = File(...),
+):
+    """
+    Test endpoint: upload two images and see their distance.
+    Use this to calibrate DISTANCE_THRESHOLD for your specific use case.
+    DELETE this endpoint in production.
+    """
+    bytes1 = await file1.read()
+    bytes2 = await file2.read()
+    enc1, err1 = encode_from_bytes(bytes1)
+    enc2, err2 = encode_from_bytes(bytes2)
+    if enc1 is None:
+        return {"success": False, "error": f"Image 1: {err1}"}
+    if enc2 is None:
+        return {"success": False, "error": f"Image 2: {err2}"}
+    dist = face_distance(enc1, enc2)
+    return {
+        "success": True,
+        "distance": round(dist, 4),
+        "current_threshold": DISTANCE_THRESHOLD,
+        "would_match": dist < DISTANCE_THRESHOLD,
+        "interpretation": (
+            "Same person" if dist < 0.40 else
+            "Likely same person" if dist < 0.50 else
+            "Uncertain" if dist < 0.60 else
+            "Different people"
+        ),
+    }
+</file>
+
+</files>

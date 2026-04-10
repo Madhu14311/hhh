@@ -1,0 +1,4429 @@
+This file is a merged representation of the entire codebase, combined into a single document by Repomix.
+
+<file_summary>
+This section contains a summary of this file.
+
+<purpose>
+This file contains a packed representation of the entire repository's contents.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.
+</purpose>
+
+<file_format>
+The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Repository files (if enabled)
+5. Multiple file entries, each consisting of:
+  - File path as an attribute
+  - Full contents of the file
+</file_format>
+
+<usage_guidelines>
+- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.
+</usage_guidelines>
+
+<notes>
+- Some files may have been excluded based on .gitignore rules and Repomix's configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Files matching patterns in .gitignore are excluded
+- Files matching default ignore patterns are excluded
+- Files are sorted by Git change count (files with more changes are at the bottom)
+</notes>
+
+</file_summary>
+
+<directory_structure>
+.gitattributes
+.gitignore
+.mvn/wrapper/maven-wrapper.properties
+mvnw
+mvnw.cmd
+pom.xml
+src/main/java/com/blisssierra/hrms/config/CorsConfig.java
+src/main/java/com/blisssierra/hrms/config/GlobalExceptionHandler.java
+src/main/java/com/blisssierra/hrms/config/WebConfig.java
+src/main/java/com/blisssierra/hrms/controller/AttendanceApiController.java
+src/main/java/com/blisssierra/hrms/controller/AttendanceController.java
+src/main/java/com/blisssierra/hrms/controller/AuthController.java
+src/main/java/com/blisssierra/hrms/controller/LeaveController.java
+src/main/java/com/blisssierra/hrms/controller/PayrollController.java
+src/main/java/com/blisssierra/hrms/controller/PayslipController.java
+src/main/java/com/blisssierra/hrms/dto/ApiResponseDto.java
+src/main/java/com/blisssierra/hrms/dto/AttendanceRecordDto.java
+src/main/java/com/blisssierra/hrms/dto/FaceUploadResponseDto.java
+src/main/java/com/blisssierra/hrms/dto/FaceVerifyResponseDto.java
+src/main/java/com/blisssierra/hrms/dto/LeaveRequestDTO.java
+src/main/java/com/blisssierra/hrms/dto/LeaveResponseDTO.java
+src/main/java/com/blisssierra/hrms/dto/LoginRequestDto.java
+src/main/java/com/blisssierra/hrms/dto/LoginResponseDto.java
+src/main/java/com/blisssierra/hrms/dto/OtpVerifyRequestDto.java
+src/main/java/com/blisssierra/hrms/dto/ResendOtpRequestDto.java
+src/main/java/com/blisssierra/hrms/dto/SalaryResponseDto.java
+src/main/java/com/blisssierra/hrms/dto/SignupRequestDto.java
+src/main/java/com/blisssierra/hrms/entity/Attendance.java
+src/main/java/com/blisssierra/hrms/entity/Employee.java
+src/main/java/com/blisssierra/hrms/entity/Leave.java
+src/main/java/com/blisssierra/hrms/entity/OtpRecord.java
+src/main/java/com/blisssierra/hrms/entity/Salary.java
+src/main/java/com/blisssierra/hrms/HrmsApplication.java
+src/main/java/com/blisssierra/hrms/repository/AttendanceRepository.java
+src/main/java/com/blisssierra/hrms/repository/EmployeeRepository.java
+src/main/java/com/blisssierra/hrms/repository/LeaveRepository.java
+src/main/java/com/blisssierra/hrms/repository/OtpRepository.java
+src/main/java/com/blisssierra/hrms/repository/SalaryRepository.java
+src/main/java/com/blisssierra/hrms/service/AttendanceApiService.java
+src/main/java/com/blisssierra/hrms/service/AttendanceService.java
+src/main/java/com/blisssierra/hrms/service/AuthService.java
+src/main/java/com/blisssierra/hrms/service/EmailService.java
+src/main/java/com/blisssierra/hrms/service/FileStorageService.java
+src/main/java/com/blisssierra/hrms/service/LeaveService.java
+src/main/java/com/blisssierra/hrms/service/OtpService.java
+src/main/java/com/blisssierra/hrms/service/SalaryResetService.java
+src/main/java/com/blisssierra/hrms/service/SalaryService.java
+src/main/resources/application.properties
+src/test/java/com/blisssierra/hrms/HrmsApplicationTests.java
+uploads/faces/12/face_1.jpg
+uploads/faces/12/face_2.jpg
+uploads/faces/12/face_3.jpg
+uploads/faces/BESS024/face_1.jpg
+uploads/faces/BESS024/face_2.jpg
+uploads/faces/BESS024/face_3.jpg
+uploads/faces/BSSE01/face_1.jpg
+uploads/faces/BSSE01/face_2.jpg
+uploads/faces/BSSE01/face_3.jpg
+uploads/faces/BSSE017/face_1.jpg
+uploads/faces/BSSE017/face_2.jpg
+uploads/faces/BSSE017/face_3.jpg
+uploads/faces/BSSE022/face_1.jpg
+uploads/faces/BSSE022/face_2.jpg
+uploads/faces/BSSE022/face_3.jpg
+uploads/faces/BSSE024/face_1.jpg
+uploads/faces/BSSE024/face_2.jpg
+uploads/faces/BSSE024/face_3.jpg
+uploads/faces/BSSE025/face_1.jpg
+uploads/faces/BSSE025/face_2.jpg
+uploads/faces/BSSE025/face_3.jpg
+uploads/faces/EMP001/face_1.jpg
+uploads/faces/EMP001/face_2.jpg
+uploads/faces/EMP001/face_3.jpg
+</directory_structure>
+
+<files>
+This section contains the contents of the repository's files.
+
+<file path=".gitattributes">
+/mvnw text eol=lf
+*.cmd text eol=crlf
+</file>
+
+<file path=".gitignore">
+HELP.md
+target/
+.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
+</file>
+
+<file path=".mvn/wrapper/maven-wrapper.properties">
+wrapperVersion=3.3.4
+distributionType=only-script
+distributionUrl=https://repo.maven.apache.org/maven2/org/apache/maven/apache-maven/3.9.14/apache-maven-3.9.14-bin.zip
+</file>
+
+<file path="mvnw">
+#!/bin/sh
+# ----------------------------------------------------------------------------
+# Licensed to the Apache Software Foundation (ASF) under one
+# or more contributor license agreements.  See the NOTICE file
+# distributed with this work for additional information
+# regarding copyright ownership.  The ASF licenses this file
+# to you under the Apache License, Version 2.0 (the
+# "License"); you may not use this file except in compliance
+# with the License.  You may obtain a copy of the License at
+#
+#    http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+# KIND, either express or implied.  See the License for the
+# specific language governing permissions and limitations
+# under the License.
+# ----------------------------------------------------------------------------
+
+# ----------------------------------------------------------------------------
+# Apache Maven Wrapper startup batch script, version 3.3.4
+#
+# Optional ENV vars
+# -----------------
+#   JAVA_HOME - location of a JDK home dir, required when download maven via java source
+#   MVNW_REPOURL - repo url base for downloading maven distribution
+#   MVNW_USERNAME/MVNW_PASSWORD - user and password for downloading maven
+#   MVNW_VERBOSE - true: enable verbose log; debug: trace the mvnw script; others: silence the output
+# ----------------------------------------------------------------------------
+
+set -euf
+[ "${MVNW_VERBOSE-}" != debug ] || set -x
+
+# OS specific support.
+native_path() { printf %s\\n "$1"; }
+case "$(uname)" in
+CYGWIN* | MINGW*)
+  [ -z "${JAVA_HOME-}" ] || JAVA_HOME="$(cygpath --unix "$JAVA_HOME")"
+  native_path() { cygpath --path --windows "$1"; }
+  ;;
+esac
+
+# set JAVACMD and JAVACCMD
+set_java_home() {
+  # For Cygwin and MinGW, ensure paths are in Unix format before anything is touched
+  if [ -n "${JAVA_HOME-}" ]; then
+    if [ -x "$JAVA_HOME/jre/sh/java" ]; then
+      # IBM's JDK on AIX uses strange locations for the executables
+      JAVACMD="$JAVA_HOME/jre/sh/java"
+      JAVACCMD="$JAVA_HOME/jre/sh/javac"
+    else
+      JAVACMD="$JAVA_HOME/bin/java"
+      JAVACCMD="$JAVA_HOME/bin/javac"
+
+      if [ ! -x "$JAVACMD" ] || [ ! -x "$JAVACCMD" ]; then
+        echo "The JAVA_HOME environment variable is not defined correctly, so mvnw cannot run." >&2
+        echo "JAVA_HOME is set to \"$JAVA_HOME\", but \"\$JAVA_HOME/bin/java\" or \"\$JAVA_HOME/bin/javac\" does not exist." >&2
+        return 1
+      fi
+    fi
+  else
+    JAVACMD="$(
+      'set' +e
+      'unset' -f command 2>/dev/null
+      'command' -v java
+    )" || :
+    JAVACCMD="$(
+      'set' +e
+      'unset' -f command 2>/dev/null
+      'command' -v javac
+    )" || :
+
+    if [ ! -x "${JAVACMD-}" ] || [ ! -x "${JAVACCMD-}" ]; then
+      echo "The java/javac command does not exist in PATH nor is JAVA_HOME set, so mvnw cannot run." >&2
+      return 1
+    fi
+  fi
+}
+
+# hash string like Java String::hashCode
+hash_string() {
+  str="${1:-}" h=0
+  while [ -n "$str" ]; do
+    char="${str%"${str#?}"}"
+    h=$(((h * 31 + $(LC_CTYPE=C printf %d "'$char")) % 4294967296))
+    str="${str#?}"
+  done
+  printf %x\\n $h
+}
+
+verbose() { :; }
+[ "${MVNW_VERBOSE-}" != true ] || verbose() { printf %s\\n "${1-}"; }
+
+die() {
+  printf %s\\n "$1" >&2
+  exit 1
+}
+
+trim() {
+  # MWRAPPER-139:
+  #   Trims trailing and leading whitespace, carriage returns, tabs, and linefeeds.
+  #   Needed for removing poorly interpreted newline sequences when running in more
+  #   exotic environments such as mingw bash on Windows.
+  printf "%s" "${1}" | tr -d '[:space:]'
+}
+
+scriptDir="$(dirname "$0")"
+scriptName="$(basename "$0")"
+
+# parse distributionUrl and optional distributionSha256Sum, requires .mvn/wrapper/maven-wrapper.properties
+while IFS="=" read -r key value; do
+  case "${key-}" in
+  distributionUrl) distributionUrl=$(trim "${value-}") ;;
+  distributionSha256Sum) distributionSha256Sum=$(trim "${value-}") ;;
+  esac
+done <"$scriptDir/.mvn/wrapper/maven-wrapper.properties"
+[ -n "${distributionUrl-}" ] || die "cannot read distributionUrl property in $scriptDir/.mvn/wrapper/maven-wrapper.properties"
+
+case "${distributionUrl##*/}" in
+maven-mvnd-*bin.*)
+  MVN_CMD=mvnd.sh _MVNW_REPO_PATTERN=/maven/mvnd/
+  case "${PROCESSOR_ARCHITECTURE-}${PROCESSOR_ARCHITEW6432-}:$(uname -a)" in
+  *AMD64:CYGWIN* | *AMD64:MINGW*) distributionPlatform=windows-amd64 ;;
+  :Darwin*x86_64) distributionPlatform=darwin-amd64 ;;
+  :Darwin*arm64) distributionPlatform=darwin-aarch64 ;;
+  :Linux*x86_64*) distributionPlatform=linux-amd64 ;;
+  *)
+    echo "Cannot detect native platform for mvnd on $(uname)-$(uname -m), use pure java version" >&2
+    distributionPlatform=linux-amd64
+    ;;
+  esac
+  distributionUrl="${distributionUrl%-bin.*}-$distributionPlatform.zip"
+  ;;
+maven-mvnd-*) MVN_CMD=mvnd.sh _MVNW_REPO_PATTERN=/maven/mvnd/ ;;
+*) MVN_CMD="mvn${scriptName#mvnw}" _MVNW_REPO_PATTERN=/org/apache/maven/ ;;
+esac
+
+# apply MVNW_REPOURL and calculate MAVEN_HOME
+# maven home pattern: ~/.m2/wrapper/dists/{apache-maven-<version>,maven-mvnd-<version>-<platform>}/<hash>
+[ -z "${MVNW_REPOURL-}" ] || distributionUrl="$MVNW_REPOURL$_MVNW_REPO_PATTERN${distributionUrl#*"$_MVNW_REPO_PATTERN"}"
+distributionUrlName="${distributionUrl##*/}"
+distributionUrlNameMain="${distributionUrlName%.*}"
+distributionUrlNameMain="${distributionUrlNameMain%-bin}"
+MAVEN_USER_HOME="${MAVEN_USER_HOME:-${HOME}/.m2}"
+MAVEN_HOME="${MAVEN_USER_HOME}/wrapper/dists/${distributionUrlNameMain-}/$(hash_string "$distributionUrl")"
+
+exec_maven() {
+  unset MVNW_VERBOSE MVNW_USERNAME MVNW_PASSWORD MVNW_REPOURL || :
+  exec "$MAVEN_HOME/bin/$MVN_CMD" "$@" || die "cannot exec $MAVEN_HOME/bin/$MVN_CMD"
+}
+
+if [ -d "$MAVEN_HOME" ]; then
+  verbose "found existing MAVEN_HOME at $MAVEN_HOME"
+  exec_maven "$@"
+fi
+
+case "${distributionUrl-}" in
+*?-bin.zip | *?maven-mvnd-?*-?*.zip) ;;
+*) die "distributionUrl is not valid, must match *-bin.zip or maven-mvnd-*.zip, but found '${distributionUrl-}'" ;;
+esac
+
+# prepare tmp dir
+if TMP_DOWNLOAD_DIR="$(mktemp -d)" && [ -d "$TMP_DOWNLOAD_DIR" ]; then
+  clean() { rm -rf -- "$TMP_DOWNLOAD_DIR"; }
+  trap clean HUP INT TERM EXIT
+else
+  die "cannot create temp dir"
+fi
+
+mkdir -p -- "${MAVEN_HOME%/*}"
+
+# Download and Install Apache Maven
+verbose "Couldn't find MAVEN_HOME, downloading and installing it ..."
+verbose "Downloading from: $distributionUrl"
+verbose "Downloading to: $TMP_DOWNLOAD_DIR/$distributionUrlName"
+
+# select .zip or .tar.gz
+if ! command -v unzip >/dev/null; then
+  distributionUrl="${distributionUrl%.zip}.tar.gz"
+  distributionUrlName="${distributionUrl##*/}"
+fi
+
+# verbose opt
+__MVNW_QUIET_WGET=--quiet __MVNW_QUIET_CURL=--silent __MVNW_QUIET_UNZIP=-q __MVNW_QUIET_TAR=''
+[ "${MVNW_VERBOSE-}" != true ] || __MVNW_QUIET_WGET='' __MVNW_QUIET_CURL='' __MVNW_QUIET_UNZIP='' __MVNW_QUIET_TAR=v
+
+# normalize http auth
+case "${MVNW_PASSWORD:+has-password}" in
+'') MVNW_USERNAME='' MVNW_PASSWORD='' ;;
+has-password) [ -n "${MVNW_USERNAME-}" ] || MVNW_USERNAME='' MVNW_PASSWORD='' ;;
+esac
+
+if [ -z "${MVNW_USERNAME-}" ] && command -v wget >/dev/null; then
+  verbose "Found wget ... using wget"
+  wget ${__MVNW_QUIET_WGET:+"$__MVNW_QUIET_WGET"} "$distributionUrl" -O "$TMP_DOWNLOAD_DIR/$distributionUrlName" || die "wget: Failed to fetch $distributionUrl"
+elif [ -z "${MVNW_USERNAME-}" ] && command -v curl >/dev/null; then
+  verbose "Found curl ... using curl"
+  curl ${__MVNW_QUIET_CURL:+"$__MVNW_QUIET_CURL"} -f -L -o "$TMP_DOWNLOAD_DIR/$distributionUrlName" "$distributionUrl" || die "curl: Failed to fetch $distributionUrl"
+elif set_java_home; then
+  verbose "Falling back to use Java to download"
+  javaSource="$TMP_DOWNLOAD_DIR/Downloader.java"
+  targetZip="$TMP_DOWNLOAD_DIR/$distributionUrlName"
+  cat >"$javaSource" <<-END
+	public class Downloader extends java.net.Authenticator
+	{
+	  protected java.net.PasswordAuthentication getPasswordAuthentication()
+	  {
+	    return new java.net.PasswordAuthentication( System.getenv( "MVNW_USERNAME" ), System.getenv( "MVNW_PASSWORD" ).toCharArray() );
+	  }
+	  public static void main( String[] args ) throws Exception
+	  {
+	    setDefault( new Downloader() );
+	    java.nio.file.Files.copy( java.net.URI.create( args[0] ).toURL().openStream(), java.nio.file.Paths.get( args[1] ).toAbsolutePath().normalize() );
+	  }
+	}
+	END
+  # For Cygwin/MinGW, switch paths to Windows format before running javac and java
+  verbose " - Compiling Downloader.java ..."
+  "$(native_path "$JAVACCMD")" "$(native_path "$javaSource")" || die "Failed to compile Downloader.java"
+  verbose " - Running Downloader.java ..."
+  "$(native_path "$JAVACMD")" -cp "$(native_path "$TMP_DOWNLOAD_DIR")" Downloader "$distributionUrl" "$(native_path "$targetZip")"
+fi
+
+# If specified, validate the SHA-256 sum of the Maven distribution zip file
+if [ -n "${distributionSha256Sum-}" ]; then
+  distributionSha256Result=false
+  if [ "$MVN_CMD" = mvnd.sh ]; then
+    echo "Checksum validation is not supported for maven-mvnd." >&2
+    echo "Please disable validation by removing 'distributionSha256Sum' from your maven-wrapper.properties." >&2
+    exit 1
+  elif command -v sha256sum >/dev/null; then
+    if echo "$distributionSha256Sum  $TMP_DOWNLOAD_DIR/$distributionUrlName" | sha256sum -c - >/dev/null 2>&1; then
+      distributionSha256Result=true
+    fi
+  elif command -v shasum >/dev/null; then
+    if echo "$distributionSha256Sum  $TMP_DOWNLOAD_DIR/$distributionUrlName" | shasum -a 256 -c >/dev/null 2>&1; then
+      distributionSha256Result=true
+    fi
+  else
+    echo "Checksum validation was requested but neither 'sha256sum' or 'shasum' are available." >&2
+    echo "Please install either command, or disable validation by removing 'distributionSha256Sum' from your maven-wrapper.properties." >&2
+    exit 1
+  fi
+  if [ $distributionSha256Result = false ]; then
+    echo "Error: Failed to validate Maven distribution SHA-256, your Maven distribution might be compromised." >&2
+    echo "If you updated your Maven version, you need to update the specified distributionSha256Sum property." >&2
+    exit 1
+  fi
+fi
+
+# unzip and move
+if command -v unzip >/dev/null; then
+  unzip ${__MVNW_QUIET_UNZIP:+"$__MVNW_QUIET_UNZIP"} "$TMP_DOWNLOAD_DIR/$distributionUrlName" -d "$TMP_DOWNLOAD_DIR" || die "failed to unzip"
+else
+  tar xzf${__MVNW_QUIET_TAR:+"$__MVNW_QUIET_TAR"} "$TMP_DOWNLOAD_DIR/$distributionUrlName" -C "$TMP_DOWNLOAD_DIR" || die "failed to untar"
+fi
+
+# Find the actual extracted directory name (handles snapshots where filename != directory name)
+actualDistributionDir=""
+
+# First try the expected directory name (for regular distributions)
+if [ -d "$TMP_DOWNLOAD_DIR/$distributionUrlNameMain" ]; then
+  if [ -f "$TMP_DOWNLOAD_DIR/$distributionUrlNameMain/bin/$MVN_CMD" ]; then
+    actualDistributionDir="$distributionUrlNameMain"
+  fi
+fi
+
+# If not found, search for any directory with the Maven executable (for snapshots)
+if [ -z "$actualDistributionDir" ]; then
+  # enable globbing to iterate over items
+  set +f
+  for dir in "$TMP_DOWNLOAD_DIR"/*; do
+    if [ -d "$dir" ]; then
+      if [ -f "$dir/bin/$MVN_CMD" ]; then
+        actualDistributionDir="$(basename "$dir")"
+        break
+      fi
+    fi
+  done
+  set -f
+fi
+
+if [ -z "$actualDistributionDir" ]; then
+  verbose "Contents of $TMP_DOWNLOAD_DIR:"
+  verbose "$(ls -la "$TMP_DOWNLOAD_DIR")"
+  die "Could not find Maven distribution directory in extracted archive"
+fi
+
+verbose "Found extracted Maven distribution directory: $actualDistributionDir"
+printf %s\\n "$distributionUrl" >"$TMP_DOWNLOAD_DIR/$actualDistributionDir/mvnw.url"
+mv -- "$TMP_DOWNLOAD_DIR/$actualDistributionDir" "$MAVEN_HOME" || [ -d "$MAVEN_HOME" ] || die "fail to move MAVEN_HOME"
+
+clean || :
+exec_maven "$@"
+</file>
+
+<file path="mvnw.cmd">
+<# : batch portion
+@REM ----------------------------------------------------------------------------
+@REM Licensed to the Apache Software Foundation (ASF) under one
+@REM or more contributor license agreements.  See the NOTICE file
+@REM distributed with this work for additional information
+@REM regarding copyright ownership.  The ASF licenses this file
+@REM to you under the Apache License, Version 2.0 (the
+@REM "License"); you may not use this file except in compliance
+@REM with the License.  You may obtain a copy of the License at
+@REM
+@REM    http://www.apache.org/licenses/LICENSE-2.0
+@REM
+@REM Unless required by applicable law or agreed to in writing,
+@REM software distributed under the License is distributed on an
+@REM "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+@REM KIND, either express or implied.  See the License for the
+@REM specific language governing permissions and limitations
+@REM under the License.
+@REM ----------------------------------------------------------------------------
+
+@REM ----------------------------------------------------------------------------
+@REM Apache Maven Wrapper startup batch script, version 3.3.4
+@REM
+@REM Optional ENV vars
+@REM   MVNW_REPOURL - repo url base for downloading maven distribution
+@REM   MVNW_USERNAME/MVNW_PASSWORD - user and password for downloading maven
+@REM   MVNW_VERBOSE - true: enable verbose log; others: silence the output
+@REM ----------------------------------------------------------------------------
+
+@IF "%__MVNW_ARG0_NAME__%"=="" (SET __MVNW_ARG0_NAME__=%~nx0)
+@SET __MVNW_CMD__=
+@SET __MVNW_ERROR__=
+@SET __MVNW_PSMODULEP_SAVE=%PSModulePath%
+@SET PSModulePath=
+@FOR /F "usebackq tokens=1* delims==" %%A IN (`powershell -noprofile "& {$scriptDir='%~dp0'; $script='%__MVNW_ARG0_NAME__%'; icm -ScriptBlock ([Scriptblock]::Create((Get-Content -Raw '%~f0'))) -NoNewScope}"`) DO @(
+  IF "%%A"=="MVN_CMD" (set __MVNW_CMD__=%%B) ELSE IF "%%B"=="" (echo %%A) ELSE (echo %%A=%%B)
+)
+@SET PSModulePath=%__MVNW_PSMODULEP_SAVE%
+@SET __MVNW_PSMODULEP_SAVE=
+@SET __MVNW_ARG0_NAME__=
+@SET MVNW_USERNAME=
+@SET MVNW_PASSWORD=
+@IF NOT "%__MVNW_CMD__%"=="" ("%__MVNW_CMD__%" %*)
+@echo Cannot start maven from wrapper >&2 && exit /b 1
+@GOTO :EOF
+: end batch / begin powershell #>
+
+$ErrorActionPreference = "Stop"
+if ($env:MVNW_VERBOSE -eq "true") {
+  $VerbosePreference = "Continue"
+}
+
+# calculate distributionUrl, requires .mvn/wrapper/maven-wrapper.properties
+$distributionUrl = (Get-Content -Raw "$scriptDir/.mvn/wrapper/maven-wrapper.properties" | ConvertFrom-StringData).distributionUrl
+if (!$distributionUrl) {
+  Write-Error "cannot read distributionUrl property in $scriptDir/.mvn/wrapper/maven-wrapper.properties"
+}
+
+switch -wildcard -casesensitive ( $($distributionUrl -replace '^.*/','') ) {
+  "maven-mvnd-*" {
+    $USE_MVND = $true
+    $distributionUrl = $distributionUrl -replace '-bin\.[^.]*$',"-windows-amd64.zip"
+    $MVN_CMD = "mvnd.cmd"
+    break
+  }
+  default {
+    $USE_MVND = $false
+    $MVN_CMD = $script -replace '^mvnw','mvn'
+    break
+  }
+}
+
+# apply MVNW_REPOURL and calculate MAVEN_HOME
+# maven home pattern: ~/.m2/wrapper/dists/{apache-maven-<version>,maven-mvnd-<version>-<platform>}/<hash>
+if ($env:MVNW_REPOURL) {
+  $MVNW_REPO_PATTERN = if ($USE_MVND -eq $False) { "/org/apache/maven/" } else { "/maven/mvnd/" }
+  $distributionUrl = "$env:MVNW_REPOURL$MVNW_REPO_PATTERN$($distributionUrl -replace "^.*$MVNW_REPO_PATTERN",'')"
+}
+$distributionUrlName = $distributionUrl -replace '^.*/',''
+$distributionUrlNameMain = $distributionUrlName -replace '\.[^.]*$','' -replace '-bin$',''
+
+$MAVEN_M2_PATH = "$HOME/.m2"
+if ($env:MAVEN_USER_HOME) {
+  $MAVEN_M2_PATH = "$env:MAVEN_USER_HOME"
+}
+
+if (-not (Test-Path -Path $MAVEN_M2_PATH)) {
+    New-Item -Path $MAVEN_M2_PATH -ItemType Directory | Out-Null
+}
+
+$MAVEN_WRAPPER_DISTS = $null
+if ((Get-Item $MAVEN_M2_PATH).Target[0] -eq $null) {
+  $MAVEN_WRAPPER_DISTS = "$MAVEN_M2_PATH/wrapper/dists"
+} else {
+  $MAVEN_WRAPPER_DISTS = (Get-Item $MAVEN_M2_PATH).Target[0] + "/wrapper/dists"
+}
+
+$MAVEN_HOME_PARENT = "$MAVEN_WRAPPER_DISTS/$distributionUrlNameMain"
+$MAVEN_HOME_NAME = ([System.Security.Cryptography.SHA256]::Create().ComputeHash([byte[]][char[]]$distributionUrl) | ForEach-Object {$_.ToString("x2")}) -join ''
+$MAVEN_HOME = "$MAVEN_HOME_PARENT/$MAVEN_HOME_NAME"
+
+if (Test-Path -Path "$MAVEN_HOME" -PathType Container) {
+  Write-Verbose "found existing MAVEN_HOME at $MAVEN_HOME"
+  Write-Output "MVN_CMD=$MAVEN_HOME/bin/$MVN_CMD"
+  exit $?
+}
+
+if (! $distributionUrlNameMain -or ($distributionUrlName -eq $distributionUrlNameMain)) {
+  Write-Error "distributionUrl is not valid, must end with *-bin.zip, but found $distributionUrl"
+}
+
+# prepare tmp dir
+$TMP_DOWNLOAD_DIR_HOLDER = New-TemporaryFile
+$TMP_DOWNLOAD_DIR = New-Item -Itemtype Directory -Path "$TMP_DOWNLOAD_DIR_HOLDER.dir"
+$TMP_DOWNLOAD_DIR_HOLDER.Delete() | Out-Null
+trap {
+  if ($TMP_DOWNLOAD_DIR.Exists) {
+    try { Remove-Item $TMP_DOWNLOAD_DIR -Recurse -Force | Out-Null }
+    catch { Write-Warning "Cannot remove $TMP_DOWNLOAD_DIR" }
+  }
+}
+
+New-Item -Itemtype Directory -Path "$MAVEN_HOME_PARENT" -Force | Out-Null
+
+# Download and Install Apache Maven
+Write-Verbose "Couldn't find MAVEN_HOME, downloading and installing it ..."
+Write-Verbose "Downloading from: $distributionUrl"
+Write-Verbose "Downloading to: $TMP_DOWNLOAD_DIR/$distributionUrlName"
+
+$webclient = New-Object System.Net.WebClient
+if ($env:MVNW_USERNAME -and $env:MVNW_PASSWORD) {
+  $webclient.Credentials = New-Object System.Net.NetworkCredential($env:MVNW_USERNAME, $env:MVNW_PASSWORD)
+}
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+$webclient.DownloadFile($distributionUrl, "$TMP_DOWNLOAD_DIR/$distributionUrlName") | Out-Null
+
+# If specified, validate the SHA-256 sum of the Maven distribution zip file
+$distributionSha256Sum = (Get-Content -Raw "$scriptDir/.mvn/wrapper/maven-wrapper.properties" | ConvertFrom-StringData).distributionSha256Sum
+if ($distributionSha256Sum) {
+  if ($USE_MVND) {
+    Write-Error "Checksum validation is not supported for maven-mvnd. `nPlease disable validation by removing 'distributionSha256Sum' from your maven-wrapper.properties."
+  }
+  Import-Module $PSHOME\Modules\Microsoft.PowerShell.Utility -Function Get-FileHash
+  if ((Get-FileHash "$TMP_DOWNLOAD_DIR/$distributionUrlName" -Algorithm SHA256).Hash.ToLower() -ne $distributionSha256Sum) {
+    Write-Error "Error: Failed to validate Maven distribution SHA-256, your Maven distribution might be compromised. If you updated your Maven version, you need to update the specified distributionSha256Sum property."
+  }
+}
+
+# unzip and move
+Expand-Archive "$TMP_DOWNLOAD_DIR/$distributionUrlName" -DestinationPath "$TMP_DOWNLOAD_DIR" | Out-Null
+
+# Find the actual extracted directory name (handles snapshots where filename != directory name)
+$actualDistributionDir = ""
+
+# First try the expected directory name (for regular distributions)
+$expectedPath = Join-Path "$TMP_DOWNLOAD_DIR" "$distributionUrlNameMain"
+$expectedMvnPath = Join-Path "$expectedPath" "bin/$MVN_CMD"
+if ((Test-Path -Path $expectedPath -PathType Container) -and (Test-Path -Path $expectedMvnPath -PathType Leaf)) {
+  $actualDistributionDir = $distributionUrlNameMain
+}
+
+# If not found, search for any directory with the Maven executable (for snapshots)
+if (!$actualDistributionDir) {
+  Get-ChildItem -Path "$TMP_DOWNLOAD_DIR" -Directory | ForEach-Object {
+    $testPath = Join-Path $_.FullName "bin/$MVN_CMD"
+    if (Test-Path -Path $testPath -PathType Leaf) {
+      $actualDistributionDir = $_.Name
+    }
+  }
+}
+
+if (!$actualDistributionDir) {
+  Write-Error "Could not find Maven distribution directory in extracted archive"
+}
+
+Write-Verbose "Found extracted Maven distribution directory: $actualDistributionDir"
+Rename-Item -Path "$TMP_DOWNLOAD_DIR/$actualDistributionDir" -NewName $MAVEN_HOME_NAME | Out-Null
+try {
+  Move-Item -Path "$TMP_DOWNLOAD_DIR/$MAVEN_HOME_NAME" -Destination $MAVEN_HOME_PARENT | Out-Null
+} catch {
+  if (! (Test-Path -Path "$MAVEN_HOME" -PathType Container)) {
+    Write-Error "fail to move MAVEN_HOME"
+  }
+} finally {
+  try { Remove-Item $TMP_DOWNLOAD_DIR -Recurse -Force | Out-Null }
+  catch { Write-Warning "Cannot remove $TMP_DOWNLOAD_DIR" }
+}
+
+Write-Output "MVN_CMD=$MAVEN_HOME/bin/$MVN_CMD"
+</file>
+
+<file path="pom.xml">
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>3.5.13</version>
+		<relativePath /> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>com.blisssierra</groupId>
+	<artifactId>hrms</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>hrms</name>
+	<description />
+	<url />
+	<licenses>
+		<license />
+	</licenses>
+	<developers>
+		<developer />
+	</developers>
+	<scm>
+		<connection />
+		<developerConnection />
+		<tag />
+		<url />
+	</scm>
+	<properties>
+		<java.version>17</java.version>
+	</properties>
+	<dependencies>
+		<!-- Spring Boot Web -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<!-- Spring Data JPA -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+
+		<!-- MySQL Driver -->
+		<dependency>
+			<groupId>com.mysql</groupId>
+			<artifactId>mysql-connector-j</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.itextpdf</groupId>
+			<artifactId>itextpdf</artifactId>
+			<version>5.5.13.3</version>
+		</dependency>
+
+		<!-- Spring Mail (for OTP) -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
+		</dependency>
+
+		<!-- Spring Validation -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-validation</artifactId>
+		</dependency>
+
+		<!-- Lombok -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
+
+		<!-- Spring Boot Test -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
+</file>
+
+<file path="src/main/java/com/blisssierra/hrms/config/CorsConfig.java">
+package com.blisssierra.hrms.config;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
+
+/**
+ * Global CORS configuration.
+ *
+ * Why needed:
+ * - Expo Go on a phone (LAN IP) → Spring Boot on laptop: different origins
+ * - Web browser (localhost:19006) → Spring Boot (localhost:8080): different
+ * ports
+ * - Both need to be allowed for the full-stack app to work
+ *
+ * This config allows all origins, methods, and headers so that
+ * both mobile (Expo Go) and web (browser) clients can reach Spring Boot.
+ */
+@Configuration
+public class CorsConfig {
+
+    @Bean
+    public CorsFilter corsFilter() {
+        CorsConfiguration config = new CorsConfiguration();
+
+        // Allow any origin — required for Expo Go on phone (dynamic LAN IPs)
+        config.addAllowedOriginPattern("*");
+
+        // Allow all standard HTTP methods
+        config.addAllowedMethod("GET");
+        config.addAllowedMethod("POST");
+        config.addAllowedMethod("PUT");
+        config.addAllowedMethod("DELETE");
+        config.addAllowedMethod("OPTIONS");
+        config.addAllowedMethod("PATCH");
+
+        // Allow all headers (Content-Type, Authorization, multipart, etc.)
+        config.addAllowedHeader("*");
+
+        // Allow credentials (not needed here but good practice)
+        config.setAllowCredentials(false);
+
+        // Apply to all routes
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", config);
+
+        return new CorsFilter(source);
+    }
+}
+</file>
+
+<file path="src/main/java/com/blisssierra/hrms/config/GlobalExceptionHandler.java">
+package com.blisssierra.hrms.config;
+
+import com.blisssierra.hrms.dto.ApiResponseDto;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.multipart.MaxUploadSizeExceededException;
+import org.springframework.web.multipart.MultipartException;
+
+/**
+ * Global exception handler — catches unhandled exceptions and returns
+ * clean JSON responses instead of Spring's default HTML error pages.
+ *
+ * The React Native frontend expects { status, message } JSON on all errors.
+ */
+@RestControllerAdvice
+public class GlobalExceptionHandler {
+
+    private static final Logger log = LoggerFactory.getLogger(GlobalExceptionHandler.class);
+
+    @ExceptionHandler(MaxUploadSizeExceededException.class)
+    public ResponseEntity<ApiResponseDto> handleMaxSize(MaxUploadSizeExceededException ex) {
+        log.error("File too large: {}", ex.getMessage());
+        return ResponseEntity.status(HttpStatus.PAYLOAD_TOO_LARGE)
+                .body(new ApiResponseDto("error", "File too large. Maximum size is 10MB per image."));
+    }
+
+    @ExceptionHandler(MultipartException.class)
+    public ResponseEntity<ApiResponseDto> handleMultipart(MultipartException ex) {
+        log.error("Multipart error: {}", ex.getMessage());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(new ApiResponseDto("error", "Invalid multipart request: " + ex.getMessage()));
+    }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<ApiResponseDto> handleIllegalArg(IllegalArgumentException ex) {
+        log.error("Illegal argument: {}", ex.getMessage());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(new ApiResponseDto("error", ex.getMessage()));
+    }
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<ApiResponseDto> handleGeneric(Exception ex) {
+        log.error("Unhandled exception: {}", ex.getMessage(), ex);
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body(new ApiResponseDto("error", "Internal server error: " + ex.getMessage()));
+    }
+}
+</file>
+
+<file path="src/main/java/com/blisssierra/hrms/config/WebConfig.java">
+package com.blisssierra.hrms.config;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+/**
+ * Web configuration:
+ * - Exposes RestTemplate bean (used by AttendanceService to call Python
+ * FastAPI)
+ * - Serves uploaded face images as static resources (optional — for debugging)
+ */
+@Configuration
+public class WebConfig implements WebMvcConfigurer {
+
+    /**
+     * RestTemplate for outbound HTTP calls to Python FastAPI.
+     * AttendanceService autowires this.
+     */
+    @Bean
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
+    }
+
+    /**
+     * Serve uploaded face images at /uploads/faces/...
+     * Useful for debugging — open
+     * http://localhost:8080/uploads/faces/EMP001/face_1.jpg
+     * Remove this in production.
+     */
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/uploads/**")
+                .addResourceLocations("file:./uploads/");
+    }
+}
+</file>
+
+<file path="src/main/java/com/blisssierra/hrms/controller/AttendanceApiController.java">
+package com.blisssierra.hrms.controller;
+import com.blisssierra.hrms.dto.AttendanceRecordDto;
+import com.blisssierra.hrms.dto.ApiResponseDto;
+import com.blisssierra.hrms.service.AttendanceApiService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Optional;
+/**
+ * AttendanceApiController
+ *
+ * Endpoints:
+ * POST /api/attendance/check-in body: { empId }
+ * POST /api/attendance/check-out body: { empId }
+ * GET /api/attendance?date=YYYY-MM-DD optional date filter
+ * GET /api/attendance/all all records (admin)
+ *
+ * The face-verify endpoint lives in AttendanceController.java (untouched).
+ */
+@RestController
+@RequestMapping("/api/attendance")
+@CrossOrigin(origins = "*")
+public class AttendanceApiController {
+    private static final Logger log = LoggerFactory.getLogger(AttendanceApiController.class);
+    @Autowired
+    private AttendanceApiService attendanceApiService;
+    // ── POST /api/attendance/check-in ────────────────────────────────────────
+    @PostMapping("/check-in")
+    public ResponseEntity<?> checkIn(@RequestBody CheckInOutRequest req) {
+        log.info("POST /api/attendance/check-in — empId={}", req.getEmpId());
+        if (req.getEmpId() == null || req.getEmpId().trim().isEmpty()) {
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponseDto("error", "empId is required"));
+        }
+        // recordCheckIn() will return existing record if already checked in today
+        AttendanceRecordDto record = attendanceApiService.recordCheckIn(req.getEmpId());
+        return ResponseEntity.ok(record);
+    }
+    // ── POST /api/attendance/check-out ───────────────────────────────────────
+    @PostMapping("/check-out")
+    public ResponseEntity<?> checkOut(@RequestBody CheckInOutRequest req) {
+        log.info("POST /api/attendance/check-out — empId={}", req.getEmpId());
+        if (req.getEmpId() == null || req.getEmpId().trim().isEmpty()) {
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponseDto("error", "empId is required"));
+        }
+        // recordCheckOut() finds today's record and updates checkOutTime
+        Optional<AttendanceRecordDto> result = attendanceApiService.recordCheckOut(req.getEmpId());
+        if (result.isEmpty()) {
+            return ResponseEntity.ok(
+                    new ApiResponseDto("error",
+                            "No check-in record found for today. Please check in first."));
+        }
+        return ResponseEntity.ok(result.get());
+    }
+    // ── GET /api/attendance?date=YYYY-MM-DD ──────────────────────────────────
+    @GetMapping
+    public ResponseEntity<List<AttendanceRecordDto>> getByDate(
+            @RequestParam(value = "date", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
+        LocalDate queryDate = (date != null) ? date : LocalDate.now();
+        log.info("GET /api/attendance?date={}", queryDate);
+        List<AttendanceRecordDto> records = attendanceApiService.getByDate(queryDate);
+        return ResponseEntity.ok(records);
+    }
+    // ── GET /api/attendance/all ──────────────────────────────────────────────
+    @GetMapping("/all")
+    public ResponseEntity<List<AttendanceRecordDto>> getAll() {
+        log.info("GET /api/attendance/all");
+        List<AttendanceRecordDto> records = attendanceApiService.getAll();
+        return ResponseEntity.ok(records);
+    }
+    // ── Inner request body DTO ───────────────────────────────────────────────
+    static class CheckInOutRequest {
+        private String empId;
+        public String getEmpId() {
+            return empId;
+        }
+        public void setEmpId(String empId) {
+            this.empId = empId;
+        }
+    }
+    // // ── GET /api/attendance/status/{empId} ──────────────────────────────────────
+    // @GetMapping("/status/{empId}")
+    // public ResponseEntity<?> getStatus(@PathVariable String empId) {
+    //     String normId = empId.trim().toUpperCase();
+    //     LocalDate today = LocalDate.now();
+    //     log.info("GET /api/attendance/status/{}", normId);
+    //     Optional<com.blisssierra.hrms.entity.Attendance> existing = attendanceApiService.getTodayRecord(normId, today);
+    //     if (existing.isEmpty()) {
+    //         return ResponseEntity.ok(java.util.Map.of(
+    //                 "checkedIn", false,
+    //                 "checkedOut", false,
+    //                 "date", today.toString()));
+    //     }
+    //     var a = existing.get();
+    //     return ResponseEntity.ok(java.util.Map.of(
+    //             "checkedIn", a.getCheckInTime() != null,
+    //             "checkedOut", a.getCheckOutTime() != null,
+    //             "date", today.toString(),
+    //             "checkIn",
+    //             a.getCheckInTime() != null
+    //                     ? a.getCheckInTime().format(java.time.format.DateTimeFormatter.ofPattern("HH:mm"))
+    //                     : "",
+    //             "checkOut",
+    //             a.getCheckOutTime() != null
+    //                     ? a.getCheckOutTime().format(java.time.format.DateTimeFormatter.ofPattern("HH:mm"))
+    //                     : ""));
+    // }
+}
+</file>
+
+<file path="src/main/java/com/blisssierra/hrms/controller/AttendanceController.java">
+package com.blisssierra.hrms.controller;
+
+import com.blisssierra.hrms.dto.FaceVerifyResponseDto;
+import com.blisssierra.hrms.service.AttendanceService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+/**
+ * AttendanceController
+ *
+ * CHANGE: Now accepts an optional "isClockedIn" form field (default false).
+ * This tells AttendanceService whether to record a check-in or check-out.
+ */
+@RestController
+@RequestMapping("/api/attendance")
+@CrossOrigin(origins = "*")
+public class AttendanceController {
+
+    private static final Logger log = LoggerFactory.getLogger(AttendanceController.class);
+
+    @Autowired
+    private AttendanceService attendanceService;
+
+    /**
+     * POST /api/attendance/verify-face
+     *
+     * Parts:
+     * empId (text)
+     * photo (image file)
+     * isClockedIn (text, "true" or "false", optional — defaults to false)
+     */
+    @PostMapping(value = "/verify-face", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<FaceVerifyResponseDto> verifyFace(
+            @RequestParam("empId") String empId,
+            @RequestParam("photo") MultipartFile photo,
+            @RequestParam(value = "isClockedIn", defaultValue = "false") boolean isClockedIn) {
+
+        log.info("POST /api/attendance/verify-face — empId={}, photo={}B, isClockedIn={}",
+                empId, photo != null ? photo.getSize() : 0, isClockedIn);
+
+        FaceVerifyResponseDto result = attendanceService.verifyFace(empId, photo, isClockedIn);
+
+        log.info("  Result: match={}, score={}", result.isMatch(), result.getScore());
+        return ResponseEntity.ok(result);
+    }
+
+    @GetMapping("/health")
+    public ResponseEntity<String> health() {
+        return ResponseEntity.ok("{\"status\":\"ok\",\"service\":\"attendance\"}");
+    }
+}
+</file>
+
+<file path="src/main/java/com/blisssierra/hrms/controller/AuthController.java">
+package com.blisssierra.hrms.controller;
+
+import com.blisssierra.hrms.dto.*;
+import com.blisssierra.hrms.service.AuthService;
+import jakarta.servlet.http.HttpServletRequest;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+/**
+ * AuthController — maps exactly to the URLs in api/config.js ENDPOINTS.
+ *
+ * POST /api/auth/signup → signup()
+ * POST /api/auth/upload-face → uploadFace()
+ * POST /api/auth/verify-otp → verifyOtp()
+ * POST /api/auth/resend-otp → resendOtp()
+ * POST /api/auth/login → login()
+ *
+ * CROSS-PLATFORM MULTIPART FIX (uploadFace):
+ * ─────────────────────────────────────────────
+ * Web (browser): React Native Web's FormData sends each image as a
+ * proper File/Blob part. The part name is "images" (set in authService.js).
+ *
+ * Mobile (Expo Go): React Native fetch sends {uri, name, type} which becomes
+ * a standard multipart file part named "images".
+ *
+ * Problem: on some request configurations Spring may see the parts under
+ * different iterator keys. This controller uses HttpServletRequest to
+ * manually collect ALL parts named "images" (or any part that is a file),
+ * making it resilient to platform differences.
+ */
+@RestController
+@RequestMapping("/api/auth")
+@CrossOrigin(origins = "*")
+public class AuthController {
+    private static final Logger log = LoggerFactory.getLogger(AuthController.class);
+    @Autowired
+    private AuthService authService;
+    // ─────────────────────────────────────────────────────────────────────────
+    // POST /api/auth/signup
+    // ─────────────────────────────────────────────────────────────────────────
+    @PostMapping("/signup")
+    public ResponseEntity<ApiResponseDto> signup(@RequestBody SignupRequestDto req) {
+        log.info("POST /api/auth/signup — empId={}, email={}", req.getEmpId(), req.getEmail());
+        ApiResponseDto response = authService.signup(req);
+        HttpStatus status = "success".equals(response.getStatus()) ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
+        return ResponseEntity.status(status).body(response);
+    }
+    // ─────────────────────────────────────────────────────────────────────────
+    // POST /api/auth/upload-face
+    // Content-Type: multipart/form-data
+    // Parts:
+    // email (text)
+    // images (file) × 3 ← name MUST match formData.append("images", ...) in
+    // authService.js
+    //
+    // Uses HttpServletRequest directly so we can collect ALL file parts
+    // regardless of how the browser/RN client serialised the multipart body.
+    // ─────────────────────────────────────────────────────────────────────────
+    @PostMapping(value = "/upload-face", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<FaceUploadResponseDto> uploadFace(HttpServletRequest request) {
+        if (!(request instanceof MultipartHttpServletRequest multipartRequest)) {
+            log.error("POST /api/auth/upload-face — not a multipart request");
+            return ResponseEntity.badRequest()
+                    .body(new FaceUploadResponseDto("error", "Request must be multipart/form-data", null));
+        }
+        // Extract email from form fields
+        String email = multipartRequest.getParameter("email");
+        log.info("POST /api/auth/upload-face — email={}", email);
+        // Collect ALL file parts (handles both "images" and any other name used by the
+        // client)
+        List<MultipartFile> images = new ArrayList<>();
+        // Primary: look for parts explicitly named "images"
+        MultiValueMap<String, MultipartFile> fileMap = multipartRequest.getMultiFileMap();
+        if (fileMap.containsKey("images")) {
+            List<MultipartFile> namedImages = fileMap.get("images");
+            if (namedImages != null) {
+                for (MultipartFile f : namedImages) {
+                    if (f != null && !f.isEmpty()) {
+                        images.add(f);
+                    }
+                }
+            }
+        }
+        // Fallback: if no "images" parts found, collect ALL non-empty file parts
+        if (images.isEmpty()) {
+            log.warn("  No parts named 'images' found — scanning all multipart file entries...");
+            for (Map.Entry<String, List<MultipartFile>> entry : fileMap.entrySet()) {
+                for (MultipartFile f : entry.getValue()) {
+                    if (f != null && !f.isEmpty()) {
+                        log.info("  Found file part named '{}': {} bytes", entry.getKey(), f.getSize());
+                        images.add(f);
+                    }
+                }
+            }
+        }
+        log.info("  Total valid image parts collected: {}", images.size());
+        FaceUploadResponseDto response = authService.uploadFace(email, images);
+        HttpStatus status = "success".equals(response.getStatus()) ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
+        return ResponseEntity.status(status).body(response);
+    }
+    // ─────────────────────────────────────────────────────────────────────────
+    // POST /api/auth/verify-otp
+    // ─────────────────────────────────────────────────────────────────────────
+    @PostMapping("/verify-otp")
+    public ResponseEntity<ApiResponseDto> verifyOtp(@RequestBody OtpVerifyRequestDto req) {
+        log.info("POST /api/auth/verify-otp — email={}", req.getEmail());
+        ApiResponseDto response = authService.verifyOtp(req);
+        HttpStatus status = "success".equals(response.getStatus()) ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
+        return ResponseEntity.status(status).body(response);
+    }
+    // ─────────────────────────────────────────────────────────────────────────
+    // POST /api/auth/resend-otp
+    // ─────────────────────────────────────────────────────────────────────────
+    @PostMapping("/resend-otp")
+    public ResponseEntity<ApiResponseDto> resendOtp(@RequestBody ResendOtpRequestDto req) {
+        log.info("POST /api/auth/resend-otp — email={}", req.getEmail());
+        ApiResponseDto response = authService.resendOtp(req);
+        HttpStatus status = "success".equals(response.getStatus()) ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
+        return ResponseEntity.status(status).body(response);
+    }
+    // ─────────────────────────────────────────────────────────────────────────
+    // POST /api/auth/login
+    // ─────────────────────────────────────────────────────────────────────────
+    @PostMapping("/login")
+    public ResponseEntity<LoginResponseDto> login(@RequestBody LoginRequestDto req) {
+        log.info("POST /api/auth/login — empId={}", req.getEmpId());
+        LoginResponseDto response = authService.login(req);
+        HttpStatus status = "success".equals(response.getStatus()) ? HttpStatus.OK : HttpStatus.UNAUTHORIZED;
+        return ResponseEntity.status(status).body(response);
+    }
+    // ─────────────────────────────────────────────────────────────────────────
+    // GET /api/auth/health
+    // ─────────────────────────────────────────────────────────────────────────
+    @GetMapping("/health")
+    public ResponseEntity<ApiResponseDto> health() {
+        return ResponseEntity.ok(new ApiResponseDto("success", "Auth service is running"));
+    }
+}
+</file>
+
+<file path="src/main/java/com/blisssierra/hrms/controller/LeaveController.java">
+package com.blisssierra.hrms.controller;
+
+import com.blisssierra.hrms.dto.LeaveRequestDTO;
+import com.blisssierra.hrms.entity.Leave;
+import com.blisssierra.hrms.service.LeaveService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/leave")
+@CrossOrigin(origins = "*")
+public class LeaveController {
+
+    private static final Logger log = LoggerFactory.getLogger(LeaveController.class);
+
+    @Autowired
+    private LeaveService leaveService;
+
+    @PostMapping("/apply")
+    public ResponseEntity<Leave> applyLeave(@RequestBody LeaveRequestDTO dto) {
+        log.info("POST /api/leave/apply employeeId={}", dto.getEmployeeId());
+        return ResponseEntity.ok(leaveService.applyLeave(dto));
+    }
+
+    // Path variable stays "userId" so the frontend URL doesn't change
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<List<Leave>> getUserLeaves(@PathVariable Long userId) {
+        log.info("GET /api/leave/user/{}", userId);
+        return ResponseEntity.ok(leaveService.getUserLeaves(userId));
+    }
+
+    @GetMapping("/admin/pending")
+    public ResponseEntity<List<Leave>> getPendingLeaves() {
+        return ResponseEntity.ok(leaveService.getPendingLeaves());
+    }
+
+    @GetMapping("/admin/all")
+    public ResponseEntity<List<Leave>> getAllLeaves() {
+        return ResponseEntity.ok(leaveService.getAllLeaves());
+    }
+
+    @PutMapping("/admin/approve/{id}")
+    public ResponseEntity<Leave> approveLeave(@PathVariable Long id) {
+        return ResponseEntity.ok(leaveService.updateStatus(id, "APPROVED"));
+    }
+
+    @PutMapping("/admin/reject/{id}")
+    public ResponseEntity<Leave> rejectLeave(@PathVariable Long id) {
+        return ResponseEntity.ok(leaveService.updateStatus(id, "REJECTED"));
+    }
+}
+</file>
+
+<file path="src/main/java/com/blisssierra/hrms/controller/PayrollController.java">
+package com.blisssierra.hrms.controller;
+
+import com.blisssierra.hrms.dto.AttendanceRecordDto;
+import com.blisssierra.hrms.dto.ApiResponseDto;
+import com.blisssierra.hrms.dto.SalaryResponseDto;
+import com.blisssierra.hrms.service.AttendanceApiService;
+import com.blisssierra.hrms.service.SalaryService;
+import com.blisssierra.hrms.repository.EmployeeRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
+
+/**
+ * PayrollController
+ *
+ * Exposes Project B's attendance check-in/check-out (by empId string)
+ * and salary query endpoints under /api/payroll/** to avoid conflicts
+ * with Project A's existing /api/attendance/** routes.
+ *
+ * All business logic is delegated to AttendanceApiService (merged)
+ * and SalaryService — no duplicate beans.
+ *
+ * Endpoints:
+ * POST /api/payroll/checkin/{empId} — check in by empId string
+ * POST /api/payroll/checkout/{empId} — check out by empId string
+ * GET /api/payroll/salary/{employeeId} — current month salary by numeric DB id
+ */
+@RestController
+@RequestMapping("/api/payroll")
+@CrossOrigin(origins = "*")
+public class PayrollController {
+
+    private static final Logger log = LoggerFactory.getLogger(PayrollController.class);
+
+    @Autowired
+    private AttendanceApiService attendanceApiService;
+
+    @Autowired
+    private SalaryService salaryService;
+
+    @Autowired
+    private EmployeeRepository employeeRepository;
+
+    // ── POST /api/payroll/checkin/{empId} ────────────────────────────────────
+    @PostMapping("/checkin/{empId}")
+    public ResponseEntity<?> checkIn(@PathVariable String empId) {
+        log.info("POST /api/payroll/checkin/{}", empId);
+        if (empId == null || empId.isBlank()) {
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponseDto("error", "empId is required"));
+        }
+        AttendanceRecordDto record = attendanceApiService.recordCheckIn(empId);
+        return ResponseEntity.ok(record);
+    }
+
+    // ── POST /api/payroll/checkout/{empId} ───────────────────────────────────
+    @PostMapping("/checkout/{empId}")
+    public ResponseEntity<?> checkOut(@PathVariable String empId) {
+        log.info("POST /api/payroll/checkout/{}", empId);
+        if (empId == null || empId.isBlank()) {
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponseDto("error", "empId is required"));
+        }
+        Optional<AttendanceRecordDto> result = attendanceApiService.recordCheckOut(empId);
+        if (result.isEmpty()) {
+            return ResponseEntity.ok(
+                    new ApiResponseDto("error",
+                            "No check-in record found for today. Please check in first."));
+        }
+        return ResponseEntity.ok(result.get());
+    }
+
+    // ── GET /api/payroll/salary/{employeeId} ─────────────────────────────────
+    /**
+     * Returns current month salary for an employee by their numeric DB id (Long).
+     * To look up by empId string, use GET /api/payroll/salary/by-emp/{empId}
+     */
+    @GetMapping("/salary/{employeeId}")
+    public ResponseEntity<?> getSalaryByNumericId(@PathVariable Long employeeId) {
+        log.info("GET /api/payroll/salary/{}", employeeId);
+        SalaryResponseDto dto = salaryService.getCurrentMonthSalary(employeeId);
+        return ResponseEntity.ok(dto);
+    }
+
+    // ── GET /api/payroll/salary/by-emp/{empId} ───────────────────────────────
+    /**
+     * Convenience endpoint: look up salary by empId string (e.g. "EMP001").
+     * Resolves empId → numeric DB id → delegates to SalaryService.
+     */
+    @GetMapping("/salary/by-emp/{empId}")
+    public ResponseEntity<?> getSalaryByEmpId(@PathVariable String empId) {
+        log.info("GET /api/payroll/salary/by-emp/{}", empId);
+        return employeeRepository.findByEmpId(empId.trim().toUpperCase())
+                .map(emp -> ResponseEntity.ok(
+                        (Object) salaryService.getCurrentMonthSalary(emp.getId())))
+                .orElseGet(() -> ResponseEntity.badRequest()
+                        .body(new ApiResponseDto("error", "Employee not found: " + empId)));
+    }
+}
+</file>
+
+<file path="src/main/java/com/blisssierra/hrms/controller/PayslipController.java">
+package com.blisssierra.hrms.controller;
+
+import com.itextpdf.text.*;
+import com.itextpdf.text.pdf.*;
+import com.blisssierra.hrms.entity.Employee;
+import com.blisssierra.hrms.entity.Salary;
+import com.blisssierra.hrms.repository.EmployeeRepository;
+import com.blisssierra.hrms.repository.SalaryRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import java.io.ByteArrayOutputStream;
+import java.time.LocalDate;
+import java.time.Month;
+
+@RestController
+@RequestMapping("/api/payslip")
+@CrossOrigin("*")
+public class PayslipController {
+        @Autowired
+        private SalaryRepository salaryRepo;
+        @Autowired
+        private EmployeeRepository employeeRepo;
+
+        // ✅ GET LAST MONTH PAYSLIP DATA
+        @GetMapping("/{empId}")
+        public ResponseEntity<?> getLastMonthPayslip(@PathVariable Long empId) {
+                // ── Calculate last month ──────────────────────────────
+                LocalDate today = LocalDate.now();
+                LocalDate lastMonth = today.minusMonths(1);
+                int month = lastMonth.getMonthValue();
+                int year = lastMonth.getYear();
+                return buildPayslipResponse(empId, month, year);
+        }
+
+        // ✅ GET SPECIFIC MONTH PAYSLIP (for history screen)
+        @GetMapping("/{empId}/{month}/{year}")
+        public ResponseEntity<?> getPayslip(
+                        @PathVariable Long empId,
+                        @PathVariable int month,
+                        @PathVariable int year) {
+                return buildPayslipResponse(empId, month, year);
+        }
+
+        // ✅ DOWNLOAD LAST MONTH PDF
+        @GetMapping("/download/{empId}")
+        public ResponseEntity<byte[]> downloadLastMonthPdf(@PathVariable Long empId) {
+                LocalDate today = LocalDate.now();
+                LocalDate lastMonth = today.minusMonths(1);
+                return generatePdf(empId, lastMonth.getMonthValue(), lastMonth.getYear());
+        }
+
+        // ✅ DOWNLOAD SPECIFIC MONTH PDF
+        @GetMapping("/download/{empId}/{month}/{year}")
+        public ResponseEntity<byte[]> downloadPdf(
+                        @PathVariable Long empId,
+                        @PathVariable int month,
+                        @PathVariable int year) {
+                return generatePdf(empId, month, year);
+        }
+
+        @GetMapping("/all-employees")
+        public ResponseEntity<?> getAllEmployees() {
+                return ResponseEntity.ok(
+                                employeeRepo.findAll()
+                                                .stream()
+                                                .map(e -> java.util.Map.of(
+                                                                "id", e.getId(),
+                                                                "name", e.getName(),
+                                                                "empCode", e.getEmpCode()))
+                                                .collect(java.util.stream.Collectors.toList()));
+        }
+
+        // ── Build JSON response ───────────────────────────────────
+        private ResponseEntity<?> buildPayslipResponse(Long empId, int month, int year) {
+                Employee emp = employeeRepo.findById(empId)
+                                .orElseThrow(() -> new RuntimeException("Employee not found"));
+                // 🔍 Fetch last month salary record
+                Salary salary = salaryRepo
+                                .findByEmployeeIdAndMonthAndYear(empId, month, year)
+                                .orElse(null);
+                if (salary == null || salary.getPresentDays() == 0) {
+                        return ResponseEntity.ok(java.util.Map.of(
+                                        "message", "No attendance found for " + Month.of(month).name() + " " + year,
+                                        "earnedSalary", 0,
+                                        "presentDays", 0));
+                }
+                // ── Calculations based on ACTUAL earned salary ────────
+                double earned = salary.getEarnedSalary(); // e.g. 26 days × ₹612 = ₹15,912
+                double perDayRate = 612.0;
+                double EPF = 900; // 5% tax
+                double insurance = 200.0;
+                double totalDeductions = EPF + insurance;
+                double netSalary = earned - totalDeductions;
+                // Earnings breakdown (proportional to earned)F
+                double basic = earned * 0.50;
+                double hra = earned * 0.20;
+                double transport = earned * 0.10;
+                double special = earned * 0.20;
+                PayslipResponse res = new PayslipResponse();
+                res.employeeName = emp.getName();
+                res.empCode = emp.getEmpCode();
+                res.month = Month.of(month).name();
+                res.year = year;
+                res.presentDays = salary.getPresentDays();
+                res.perDayRate = perDayRate;
+                res.earnedSalary = earned;
+                // In buildPayslipResponse(), after setting earnedSalary:
+                res.grossSalary = salary.getGrossSalary(); // ADD THIS LINE
+                res.basicSalary = basic;
+                res.hra = hra;
+                res.transport = transport;
+                res.specialAllowance = special;
+                res.tax = EPF;
+                res.insurance = insurance;
+                res.totalDeductions = totalDeductions;
+                res.netSalary = netSalary;
+                return ResponseEntity.ok(res);
+        }
+
+        // ── Generate PDF ──────────────────────────────────────────
+        // private ResponseEntity<byte[]> generatePdf(Long empId, int month, int year) {
+        // Employee emp = employeeRepo.findById(empId)
+        // .orElseThrow(() -> new RuntimeException("Employee not found"));
+        // // ✅ Return a clean 404 instead of 500
+        // Salary salary = salaryRepo
+        // .findByEmployeeIdAndMonthAndYear(empId, month, year)
+        // .orElse(null);
+        // if (salary == null) {
+        // return ResponseEntity.status(404)
+        // .body(("No salary record found for " + Month.of(month).name() + " " +
+        // year).getBytes());
+        // }
+        // double earned = salary.getEarnedSalary();
+        // double tax = earned * 0.05;
+        // double insurance = 200.0;
+        // double totalDeductions = tax + insurance;
+        // double netSalary = earned - totalDeductions;
+        // double basic = earned * 0.50;
+        // double hra = earned * 0.20;
+        // double transport = earned * 0.10;
+        // double special = earned * 0.20;
+        // String monthName = Month.of(month).name();
+        // try {
+        // ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        // Document document = new Document(PageSize.A4);
+        // PdfWriter.getInstance(document, baos);
+        // document.open();
+        // // ── Colors ────────────────────────────────────────
+        // BaseColor darkBlue = new BaseColor(17, 34, 53);
+        // BaseColor medBlue = new BaseColor(47, 110, 142);
+        // BaseColor lightBlue = new BaseColor(219, 234, 254);
+        // BaseColor green = new BaseColor(22, 163, 74);
+        // BaseColor red = new BaseColor(220, 38, 38);
+        // BaseColor lightGreen = new BaseColor(220, 252, 231);
+        // // ── Fonts ─────────────────────────────────────────
+        // Font titleFont = new Font(Font.FontFamily.HELVETICA, 22, Font.BOLD,
+        // BaseColor.WHITE);
+        // Font subFont = new Font(Font.FontFamily.HELVETICA, 11, Font.NORMAL, new
+        // BaseColor(180, 200, 220));
+        // Font whiteFont = new Font(Font.FontFamily.HELVETICA, 11, Font.BOLD,
+        // BaseColor.WHITE);
+        // Font labelFont = new Font(Font.FontFamily.HELVETICA, 10, Font.NORMAL, new
+        // BaseColor(80, 80, 80));
+        // Font valueFont = new Font(Font.FontFamily.HELVETICA, 10, Font.BOLD,
+        // darkBlue);
+        // Font greenFont = new Font(Font.FontFamily.HELVETICA, 10, Font.BOLD, green);
+        // Font redFont = new Font(Font.FontFamily.HELVETICA, 10, Font.NORMAL, red);
+        // Font netFont = new Font(Font.FontFamily.HELVETICA, 14, Font.BOLD, green);
+        // Font boldRed = new Font(Font.FontFamily.HELVETICA, 11, Font.BOLD, red);
+        // Font boldBlue = new Font(Font.FontFamily.HELVETICA, 11, Font.BOLD, medBlue);
+        // // ── Header ────────────────────────────────────────
+        // PdfPTable hdrTable = new PdfPTable(1);
+        // hdrTable.setWidthPercentage(100);
+        // PdfPCell titleCell = new PdfPCell(new Phrase("SALARY SLIP", titleFont));
+        // titleCell.setBackgroundColor(darkBlue);
+        // titleCell.setPadding(16);
+        // titleCell.setHorizontalAlignment(Element.ALIGN_CENTER);
+        // titleCell.setBorder(Rectangle.NO_BORDER);
+        // hdrTable.addCell(titleCell);
+        // PdfPCell monthCell = new PdfPCell(new Phrase(monthName + " " + year,
+        // subFont));
+        // monthCell.setBackgroundColor(darkBlue);
+        // monthCell.setPadding(4);
+        // monthCell.setPaddingBottom(14);
+        // monthCell.setHorizontalAlignment(Element.ALIGN_CENTER);
+        // monthCell.setBorder(Rectangle.NO_BORDER);
+        // hdrTable.addCell(monthCell);
+        // document.add(hdrTable);
+        // document.add(Chunk.NEWLINE);
+        // // ── Employee Details ──────────────────────────────
+        // addSectionHeader(document, "EMPLOYEE DETAILS", medBlue, whiteFont);
+        // PdfPTable empTable = new PdfPTable(4);
+        // empTable.setWidthPercentage(100);
+        // empTable.setWidths(new float[] { 1.2f, 1.8f, 1.2f, 1.8f });
+        // addInfoRow(empTable, "Name", emp.getName(), labelFont, valueFont, lightBlue);
+        // addInfoRow(empTable, "Employee ID", emp.getEmpCode(), labelFont, valueFont,
+        // BaseColor.WHITE);
+        // addInfoRow(empTable, "Month", monthName + " " + year, labelFont, valueFont,
+        // lightBlue);
+        // addInfoRow(empTable, "Days Present", salary.getPresentDays() + " days",
+        // labelFont, valueFont,
+        // BaseColor.WHITE);
+        // addInfoRow(empTable, "Per Day Rate", "₹612", labelFont, valueFont,
+        // lightBlue);
+        // addInfoRow(empTable, "Department", "Engineering", labelFont, valueFont,
+        // BaseColor.WHITE);
+        // document.add(empTable);
+        // document.add(Chunk.NEWLINE);
+        // // ── Attendance Summary Box ────────────────────────
+        // PdfPTable attBox = new PdfPTable(3);
+        // attBox.setWidthPercentage(100);
+        // addSummaryCell(attBox, "Days Present", salary.getPresentDays() + " days",
+        // medBlue, lightBlue);
+        // addSummaryCell(attBox, "Per Day Rate", "₹612", medBlue, lightBlue);
+        // addSummaryCell(attBox, "Total Earned", "₹" + String.format("%.2f", earned),
+        // new BaseColor(21, 128, 61),
+        // lightGreen);
+        // document.add(attBox);
+        // document.add(Chunk.NEWLINE);
+        // // ── Earnings ──────────────────────────────────────
+        // addSectionHeader(document, "EARNINGS BREAKDOWN", medBlue, whiteFont);
+        // PdfPTable earnTable = new PdfPTable(2);
+        // earnTable.setWidthPercentage(100);
+        // addSalaryRow(earnTable, "Basic Salary (50%)", "₹" + fmt(basic), labelFont,
+        // greenFont, lightBlue);
+        // addSalaryRow(earnTable, "House Rent Allowance (20%)", "₹" + fmt(hra),
+        // labelFont, greenFont,
+        // BaseColor.WHITE);
+        // addSalaryRow(earnTable, "Transport Allowance (10%)", "₹" + fmt(transport),
+        // labelFont, greenFont, lightBlue);
+        // addSalaryRow(earnTable, "Special Allowance (20%)", "₹" + fmt(special),
+        // labelFont, greenFont,
+        // BaseColor.WHITE);
+        // addSalaryRow(earnTable, "GROSS EARNED SALARY", "₹" + fmt(earned), whiteFont,
+        // boldBlue, lightBlue);
+        // document.add(earnTable);
+        // document.add(Chunk.NEWLINE);
+        // // ── Deductions ────────────────────────────────────
+        // addSectionHeader(document, "DEDUCTIONS", new BaseColor(180, 60, 60),
+        // whiteFont);
+        // PdfPTable dedTable = new PdfPTable(2);
+        // dedTable.setWidthPercentage(100);
+        // addSalaryRow(dedTable, "Income Tax (5%)", "-₹" + fmt(tax), labelFont,
+        // redFont, lightBlue);
+        // addSalaryRow(dedTable, "Insurance", "-₹" + fmt(insurance), labelFont,
+        // redFont, BaseColor.WHITE);
+        // addSalaryRow(dedTable, "TOTAL DEDUCTIONS", "-₹" + fmt(totalDeductions),
+        // whiteFont, boldRed, lightBlue);
+        // document.add(dedTable);
+        // document.add(Chunk.NEWLINE);
+        // // ── Net Salary ────────────────────────────────────
+        // PdfPTable netTable = new PdfPTable(2);
+        // netTable.setWidthPercentage(100);
+        // PdfPCell netLabel = new PdfPCell(
+        // new Phrase("NET SALARY (Take Home)", new Font(Font.FontFamily.HELVETICA, 13,
+        // Font.BOLD, darkBlue)));
+        // netLabel.setBackgroundColor(lightGreen);
+        // netLabel.setPadding(14);
+        // netLabel.setBorder(Rectangle.BOX);
+        // netLabel.setBorderColor(new BaseColor(187, 247, 208));
+        // PdfPCell netValue = new PdfPCell(new Phrase("₹" + fmt(netSalary), netFont));
+        // netValue.setBackgroundColor(lightGreen);
+        // netValue.setPadding(14);
+        // netValue.setHorizontalAlignment(Element.ALIGN_RIGHT);
+        // netValue.setBorder(Rectangle.BOX);
+        // netValue.setBorderColor(new BaseColor(187, 247, 208));
+        // netTable.addCell(netLabel);
+        // netTable.addCell(netValue);
+        // document.add(netTable);
+        // // ── Footer ────────────────────────────────────────
+        // document.add(Chunk.NEWLINE);
+        // document.add(Chunk.NEWLINE);
+        // Font footerFont = new Font(Font.FontFamily.HELVETICA, 9, Font.ITALIC, new
+        // BaseColor(150, 150, 150));
+        // Paragraph footer = new Paragraph(
+        // "This is a system-generated payslip. For queries contact HR. | Generated on "
+        // + LocalDate.now(),
+        // footerFont);
+        // footer.setAlignment(Element.ALIGN_CENTER);
+        // document.add(footer);
+        // document.close();
+        // return ResponseEntity.ok()
+        // .header(HttpHeaders.CONTENT_DISPOSITION,
+        // "attachment; filename=payslip_" + emp.getEmpCode()
+        // + "_" + monthName + "_" + year + ".pdf")
+        // .contentType(MediaType.APPLICATION_PDF)
+        // .body(baos.toByteArray());
+        // } catch (Exception e) {
+        // throw new RuntimeException("PDF generation failed: " + e.getMessage());
+        // }
+        // }
+        private ResponseEntity<byte[]> generatePdf(Long empId, int month, int year) {
+                Employee emp = employeeRepo.findById(empId)
+                                .orElseThrow(() -> new RuntimeException("Employee not found"));
+                Salary salary = salaryRepo
+                                .findByEmployeeIdAndMonthAndYear(empId, month, year)
+                                .orElse(null);
+                if (salary == null) {
+                        return ResponseEntity.status(404)
+                                        .body(("No salary record found for " + Month.of(month).name() + " " + year)
+                                                        .getBytes());
+                }
+                double earned = salary.getEarnedSalary();
+                double basic = earned * 0.50;
+                double hra = earned * 0.20;
+                double specialAllow = earned * 0.10;
+                double companyContrib = earned * 0.20;
+                double totalEarnings = earned;
+                double professionalTax = 200.0;
+                double healthCard = 0.0;
+                double epf = 900.0;
+                double loan = 0.0;
+                double totalDeductions = professionalTax + healthCard + epf + loan;
+                double netPay = totalEarnings - totalDeductions;
+                int workingDays = salary.getPresentDays();
+                double daySalary = workingDays > 0 ? earned / workingDays : 0;
+                String monthName = Month.of(month).name().substring(0, 1)
+                                + Month.of(month).name().substring(1).toLowerCase();
+                String monthYear = monthName.substring(0, 3) + "-" + String.valueOf(year).substring(2);
+                try {
+                        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                        Document document = new Document(PageSize.A4, 36, 36, 36, 36);
+                        PdfWriter.getInstance(document, baos);
+                        document.open();
+                        // ── Colors ────────────────────────────────────────────
+                        BaseColor darkGreen = new BaseColor(0, 100, 0);
+                        BaseColor lightGreen = new BaseColor(198, 224, 180);
+                        BaseColor lightBlue = new BaseColor(189, 215, 238);
+                        BaseColor orange = new BaseColor(255, 102, 0);
+                        BaseColor black = BaseColor.BLACK;
+                        BaseColor white = BaseColor.WHITE;
+                        BaseColor lightGray = new BaseColor(242, 242, 242);
+                        // ── Fonts ─────────────────────────────────────────────
+                        Font companyFont = new Font(Font.FontFamily.HELVETICA, 18, Font.BOLD, orange);
+                        Font addressFont = new Font(Font.FontFamily.HELVETICA, 8, Font.NORMAL, black);
+                        Font boldSmall = new Font(Font.FontFamily.HELVETICA, 9, Font.BOLD, black);
+                        Font normalSmall = new Font(Font.FontFamily.HELVETICA, 9, Font.NORMAL, black);
+                        Font boldGreen = new Font(Font.FontFamily.HELVETICA, 9, Font.BOLD, darkGreen);
+                        Font netPayFont = new Font(Font.FontFamily.HELVETICA, 11, Font.BOLD, black);
+                        // ══════════════════════════════════════════════════════
+                        // HEADER — Logo placeholder + Company Name + Address
+                        // ══════════════════════════════════════════════════════
+                        PdfPTable headerTable = new PdfPTable(new float[] { 1.2f, 3f });
+                        headerTable.setWidthPercentage(100);
+                        // Logo cell (placeholder box)
+                        PdfPCell logoCell = new PdfPCell();
+                        logoCell.setBorder(Rectangle.BOX);
+                        logoCell.setPadding(10);
+                        logoCell.setFixedHeight(70);
+                        try {
+                                Image logo = Image.getInstance(getClass().getResource("/static/bs image.jpg"));
+                                logo.scaleToFit(50, 50); // adjust size
+                                logo.setAlignment(Element.ALIGN_CENTER);
+                                logoCell.addElement(logo);
+                        } catch (Exception e) {
+                                e.printStackTrace();
+                        }
+                        headerTable.addCell(logoCell);
+                        // Company name + address cell
+                        PdfPCell companyCell = new PdfPCell();
+                        companyCell.setBorder(Rectangle.BOX);
+                        companyCell.setPadding(8);
+                        companyCell.addElement(new Phrase("BLISS SIERRA SOFTWARE SOLUTIONS", companyFont));
+                        companyCell.addElement(new Phrase(
+                                        "Flat No 402, Neelakanta Nilayam, Kakatiya Hills, Road No 9, Guttalabegumpet, Madhapur, Hyderabad-500081",
+                                        addressFont));
+                        headerTable.addCell(companyCell);
+                        document.add(headerTable);
+                        // ══════════════════════════════════════════════════════
+                        // PAY PERIOD + PAY SLIP TITLE ROW
+                        // ══════════════════════════════════════════════════════
+                        PdfPTable periodTable = new PdfPTable(new float[] { 1.5f, 1.5f, 2f });
+                        periodTable.setWidthPercentage(100);
+                        PdfPCell periodLabelCell = new PdfPCell(new Phrase("Pay Period (Month)", boldSmall));
+                        periodLabelCell.setBorder(Rectangle.BOX);
+                        periodLabelCell.setPadding(6);
+                        periodLabelCell.setBackgroundColor(white);
+                        periodTable.addCell(periodLabelCell);
+                        PdfPCell periodValueCell = new PdfPCell(new Phrase(monthYear, boldGreen));
+                        periodValueCell.setBorder(Rectangle.BOX);
+                        periodValueCell.setPadding(6);
+                        periodValueCell.setBackgroundColor(lightBlue);
+                        periodValueCell.setHorizontalAlignment(Element.ALIGN_CENTER);
+                        periodTable.addCell(periodValueCell);
+                        PdfPCell paySlipTitleCell = new PdfPCell(
+                                        new Phrase("PAY SLIP",
+                                                        new Font(Font.FontFamily.HELVETICA, 14, Font.BOLD, black)));
+                        paySlipTitleCell.setBorder(Rectangle.BOX);
+                        paySlipTitleCell.setPadding(6);
+                        paySlipTitleCell.setHorizontalAlignment(Element.ALIGN_CENTER);
+                        paySlipTitleCell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+                        periodTable.addCell(paySlipTitleCell);
+                        document.add(periodTable);
+                        // ══════════════════════════════════════════════════════
+                        // EMPLOYEE DETAILS SECTION HEADER
+                        // ══════════════════════════════════════════════════════
+                        PdfPTable empHeaderTable = new PdfPTable(1);
+                        empHeaderTable.setWidthPercentage(100);
+                        PdfPCell empHeaderCell = new PdfPCell(new Phrase("EMPLOYEE DETAILS", boldSmall));
+                        empHeaderCell.setBackgroundColor(lightBlue);
+                        empHeaderCell.setBorder(Rectangle.BOX);
+                        empHeaderCell.setPadding(5);
+                        empHeaderCell.setHorizontalAlignment(Element.ALIGN_CENTER);
+                        empHeaderTable.addCell(empHeaderCell);
+                        document.add(empHeaderTable);
+                        // ══════════════════════════════════════════════════════
+                        // EMPLOYEE DETAILS ROWS
+                        // ══════════════════════════════════════════════════════
+                        PdfPTable empDetailsTable = new PdfPTable(new float[] { 1.5f, 2f, 1.5f, 2f });
+                        empDetailsTable.setWidthPercentage(100);
+                        addEmpRow(empDetailsTable, "Employee ID", emp.getEmpCode(), "", "", boldSmall,
+                                        boldGreen,
+                                        normalSmall, lightGray);
+                        addEmpRow(empDetailsTable, "Name", emp.getName(), "Designation", "Software Engineer", boldSmall,
+                                        normalSmall, normalSmall, white);
+                        addEmpRow(empDetailsTable, "Gross Salary", "₹" + fmt(salary.getGrossSalary()),
+                                        "Earned Salary", "₹" + fmt(earned), boldSmall, boldGreen, normalSmall, white);
+                        document.add(empDetailsTable);
+                        // ══════════════════════════════════════════════════════
+                        // EARNINGS + DEDUCTIONS TWO-COLUMN TABLE
+                        // ══════════════════════════════════════════════════════
+                        document.add(Chunk.NEWLINE);
+                        PdfPTable mainTable = new PdfPTable(new float[] { 2f, 1f, 2f, 1f });
+                        mainTable.setWidthPercentage(100);
+                        // Header row
+                        PdfPCell earnHeader = new PdfPCell(new Phrase("EARNINGS", boldSmall));
+                        earnHeader.setBackgroundColor(lightGreen);
+                        earnHeader.setBorder(Rectangle.BOX);
+                        earnHeader.setPadding(5);
+                        earnHeader.setHorizontalAlignment(Element.ALIGN_CENTER);
+                        PdfPCell earnAmtHeader = new PdfPCell(new Phrase("", boldSmall));
+                        earnAmtHeader.setBackgroundColor(lightGreen);
+                        earnAmtHeader.setBorder(Rectangle.BOX);
+                        PdfPCell dedHeader = new PdfPCell(new Phrase("DEDUCTIONS", boldSmall));
+                        dedHeader.setBackgroundColor(lightGreen);
+                        dedHeader.setBorder(Rectangle.BOX);
+                        dedHeader.setPadding(5);
+                        dedHeader.setHorizontalAlignment(Element.ALIGN_CENTER);
+                        PdfPCell dedAmtHeader = new PdfPCell(new Phrase("", boldSmall));
+                        dedAmtHeader.setBackgroundColor(lightGreen);
+                        dedAmtHeader.setBorder(Rectangle.BOX);
+                        mainTable.addCell(earnHeader);
+                        mainTable.addCell(earnAmtHeader);
+                        mainTable.addCell(dedHeader);
+                        mainTable.addCell(dedAmtHeader);
+                        // Data rows
+                        addMainRow(mainTable, "Basic Salary", fmt(basic), "Professional Tax", fmt(professionalTax),
+                                        normalSmall,
+                                        boldSmall, lightGray, white);
+                        addMainRow(mainTable, "HRA", fmt(hra), "Health Card", fmt(healthCard), normalSmall, boldSmall,
+                                        white,
+                                        lightGray);
+                        addMainRow(mainTable, "Special Allowance", fmt(specialAllow), "EPF", fmt(epf), normalSmall,
+                                        boldSmall,
+                                        lightGray, white);
+                        addMainRow(mainTable, "Company Contribution", fmt(companyContrib), "Loan", fmt(loan),
+                                        normalSmall,
+                                        boldSmall, white, lightGray);
+                        document.add(mainTable);
+                        // ══════════════════════════════════════════════════════
+                        // TOTALS TABLE
+                        // ══════════════════════════════════════════════════════
+                        PdfPTable totalsTable = new PdfPTable(new float[] { 2f, 1f, 2f, 1f });
+                        totalsTable.setWidthPercentage(100);
+                        addTotalRow(totalsTable, "Total Earnings", fmt(totalEarnings), "Total Deductions",
+                                        fmt(totalDeductions),
+                                        boldSmall, lightGreen);
+                        addTotalRow(totalsTable, "Working Days", String.valueOf(workingDays), "Day Salary",
+                                        fmt(daySalary),
+                                        boldSmall, white);
+                        addTotalRow(totalsTable, "Total Amount", fmt(earned), "", "", boldSmall, lightGray);
+                        document.add(totalsTable);
+                        // ══════════════════════════════════════════════════════
+                        // NET PAY ROW
+                        // ══════════════════════════════════════════════════════
+                        PdfPTable netTable = new PdfPTable(new float[] { 2f, 1f, 2f, 1f });
+                        netTable.setWidthPercentage(100);
+                        PdfPCell netLabel = new PdfPCell(new Phrase("NET PAY", netPayFont));
+                        netLabel.setBorder(Rectangle.BOX);
+                        netLabel.setPadding(8);
+                        netLabel.setBackgroundColor(lightGreen);
+                        PdfPCell netValue = new PdfPCell(new Phrase(fmt(netPay), netPayFont));
+                        netValue.setBorder(Rectangle.BOX);
+                        netValue.setPadding(8);
+                        netValue.setBackgroundColor(lightGreen);
+                        netValue.setHorizontalAlignment(Element.ALIGN_RIGHT);
+                        PdfPCell payDateLabel = new PdfPCell(new Phrase("Payment Date", boldSmall));
+                        payDateLabel.setBorder(Rectangle.BOX);
+                        payDateLabel.setPadding(8);
+                        payDateLabel.setBackgroundColor(lightGreen);
+                        // Last day of the month
+                        java.time.LocalDate lastDay = java.time.LocalDate.of(year, month, 1).withDayOfMonth(
+                                        java.time.LocalDate.of(year, month, 1).lengthOfMonth());
+                        PdfPCell payDateValue = new PdfPCell(new Phrase(lastDay.toString(), normalSmall));
+                        payDateValue.setBorder(Rectangle.BOX);
+                        payDateValue.setPadding(8);
+                        payDateValue.setBackgroundColor(lightGreen);
+                        netTable.addCell(netLabel);
+                        netTable.addCell(netValue);
+                        netTable.addCell(payDateLabel);
+                        netTable.addCell(payDateValue);
+                        document.add(netTable);
+                        document.close();
+                        return ResponseEntity.ok()
+                                        .header(HttpHeaders.CONTENT_DISPOSITION,
+                                                        "attachment; filename=payslip_" + emp.getEmpCode()
+                                                                        + "_" + monthName + "_" + year + ".pdf")
+                                        .contentType(MediaType.APPLICATION_PDF)
+                                        .body(baos.toByteArray());
+                } catch (Exception e) {
+                        throw new RuntimeException("PDF generation failed: " + e.getMessage());
+                }
+        }
+
+        // ── Helpers ───────────────────────────────────────────────
+        private void addEmpRow(PdfPTable table, String l1, String v1, String l2, String v2,
+                        Font labelFont, Font valueFont, Font normalFont, BaseColor bg) {
+                PdfPCell c1 = new PdfPCell(new Phrase(l1, labelFont));
+                PdfPCell c2 = new PdfPCell(new Phrase(v1, valueFont));
+                PdfPCell c3 = new PdfPCell(new Phrase(l2, labelFont));
+                PdfPCell c4 = new PdfPCell(new Phrase(v2, normalFont));
+                for (PdfPCell c : new PdfPCell[] { c1, c2, c3, c4 }) {
+                        c.setBorder(Rectangle.BOX);
+                        c.setPadding(6);
+                        c.setBackgroundColor(bg);
+                }
+                table.addCell(c1);
+                table.addCell(c2);
+                table.addCell(c3);
+                table.addCell(c4);
+        }
+
+        private void addMainRow(PdfPTable table, String earn, String earnAmt,
+                        String ded, String dedAmt, Font normalFont, Font boldFont,
+                        BaseColor earnBg, BaseColor dedBg) {
+                PdfPCell c1 = new PdfPCell(new Phrase(earn, normalFont));
+                c1.setBorder(Rectangle.BOX);
+                c1.setPadding(6);
+                c1.setBackgroundColor(earnBg);
+                PdfPCell c2 = new PdfPCell(new Phrase(earnAmt, boldFont));
+                c2.setBorder(Rectangle.BOX);
+                c2.setPadding(6);
+                c2.setBackgroundColor(earnBg);
+                c2.setHorizontalAlignment(Element.ALIGN_RIGHT);
+                PdfPCell c3 = new PdfPCell(new Phrase(ded, normalFont));
+                c3.setBorder(Rectangle.BOX);
+                c3.setPadding(6);
+                c3.setBackgroundColor(dedBg);
+                PdfPCell c4 = new PdfPCell(new Phrase(dedAmt, boldFont));
+                c4.setBorder(Rectangle.BOX);
+                c4.setPadding(6);
+                c4.setBackgroundColor(dedBg);
+                c4.setHorizontalAlignment(Element.ALIGN_RIGHT);
+                table.addCell(c1);
+                table.addCell(c2);
+                table.addCell(c3);
+                table.addCell(c4);
+        }
+
+        private void addTotalRow(PdfPTable table, String l1, String v1,
+                        String l2, String v2, Font boldFont, BaseColor bg) {
+                PdfPCell c1 = new PdfPCell(new Phrase(l1, boldFont));
+                c1.setBorder(Rectangle.BOX);
+                c1.setPadding(6);
+                c1.setBackgroundColor(bg);
+                PdfPCell c2 = new PdfPCell(new Phrase(v1, boldFont));
+                c2.setBorder(Rectangle.BOX);
+                c2.setPadding(6);
+                c2.setBackgroundColor(bg);
+                c2.setHorizontalAlignment(Element.ALIGN_RIGHT);
+                PdfPCell c3 = new PdfPCell(new Phrase(l2, boldFont));
+                c3.setBorder(Rectangle.BOX);
+                c3.setPadding(6);
+                c3.setBackgroundColor(bg);
+                PdfPCell c4 = new PdfPCell(new Phrase(v2, boldFont));
+                c4.setBorder(Rectangle.BOX);
+                c4.setPadding(6);
+                c4.setBackgroundColor(bg);
+                c4.setHorizontalAlignment(Element.ALIGN_RIGHT);
+                table.addCell(c1);
+                table.addCell(c2);
+                table.addCell(c3);
+                table.addCell(c4);
+        }
+
+        private String fmt(double v) {
+                return String.format("%.2f", v);
+        }
+
+        // ✅ Inner class at the very bottom
+        public static class PayslipResponse {
+                public String employeeName;
+                public String empCode;
+                public String month;
+                public int year;
+                public int presentDays;
+                public double perDayRate;
+                public double grossSalary;
+                public double earnedSalary;
+                public double basicSalary;
+                public double hra;
+                public double transport;
+                public double specialAllowance;
+                public double tax;
+                public double insurance;
+                public double totalDeductions;
+                public double netSalary;
+        }
+}
+</file>
+
+<file path="src/main/java/com/blisssierra/hrms/dto/ApiResponseDto.java">
+package com.blisssierra.hrms.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+/**
+ * Generic API response used across all endpoints.
+ *
+ * Example responses:
+ * { "status": "success", "message": "OTP sent to user@email.com" }
+ * { "status": "error", "message": "Email already exists" }
+ *
+ * Mapped to/from JSON automatically by Jackson.
+ */
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class ApiResponseDto {
+
+    /**
+     * "success" or "error"
+     */
+    private String status;
+
+    /**
+     * Human-readable message shown to the user.
+     */
+    private String message;
+}
+</file>
+
+<file path="src/main/java/com/blisssierra/hrms/dto/AttendanceRecordDto.java">
+package com.blisssierra.hrms.dto;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+/**
+ * Sent to the React Native admin screen for each attendance record.
+ *
+ * Times are serialised as "HH:mm" strings so the frontend can display
+ * them directly without any client-side parsing.
+ *
+ * Example JSON:
+ * {
+ *   "id": 1,
+ *   "empId": "EMP001",
+ *   "employeeName": "Alice Smith",
+ *   "date": "2025-06-10",
+ *   "checkIn": "09:05",
+ *   "checkOut": "17:32",
+ *   "durationMinutes": 507,
+ *   "status": "Present"
+ * }
+ */
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class AttendanceRecordDto {
+
+    private Long id;
+
+    private String empId;
+
+    private String employeeName;
+
+    /** ISO date: "YYYY-MM-DD" */
+    private String date;
+
+    /**
+     * "HH:mm" or null if the employee has not yet checked in.
+     * Will always be non-null for records returned from the API because
+     * records are only created on check-in.
+     */
+    private String checkIn;
+
+    /**
+     * "HH:mm" or null when the employee is still clocked in
+     * (no check-out recorded yet).
+     */
+    private String checkOut;
+
+    /**
+     * Total working time in minutes, calculated server-side.
+     * -1 when checkOut is null (session still open).
+     */
+    private long durationMinutes;
+
+    /**
+     * "Present"  — checked in, session closed
+     * "Active"   — checked in, session still open
+     */
+    private String status;
+}
+</file>
+
+<file path="src/main/java/com/blisssierra/hrms/dto/FaceUploadResponseDto.java">
+package com.blisssierra.hrms.dto;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+
+/**
+ * Response body for POST /api/auth/upload-face
+ *
+ * Returned after the server saves the 3 registration selfies to disk
+ * and stores their absolute paths in the employee record.
+ *
+ * Example success response:
+ * {
+ * "status": "success",
+ * "message": "Face images uploaded successfully (3 photos stored)",
+ * "paths": "/home/user/uploads/EMP001/face_1.jpg,..."
+ * }
+ *
+ * Example error response:
+ * {
+ * "status": "error",
+ * "message": "Exactly 3 face images are required. Received: 2",
+ * "paths": null
+ * }
+ *
+ * The React Native frontend checks data.status === "error" in apiUploadFace().
+ */
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class FaceUploadResponseDto {
+
+    /** "success" or "error" */
+    private String status;
+
+    /** Human-readable result message. */
+    private String message;
+
+    /**
+     * Comma-separated absolute paths of the saved face images.
+     * Null on error.
+     * Example: "/home/user/hrms/uploads/faces/EMP001/face_1.jpg,
+     * /home/user/hrms/uploads/faces/EMP001/face_2.jpg,
+     * /home/user/hrms/uploads/faces/EMP001/face_3.jpg"
+     */
+    private String paths;
+}
+</file>
+
+<file path="src/main/java/com/blisssierra/hrms/dto/FaceVerifyResponseDto.java">
+package com.blisssierra.hrms.dto;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+
+/**
+ * Response body for POST /api/attendance/verify-face
+ *
+ * This DTO is used in two directions:
+ * 1. Returned by AttendanceService.forwardToPython() after deserialising
+ * the JSON response from Python FastAPI (/api/face/verify).
+ * 2. Returned directly by AttendanceController to the React Native app.
+ *
+ * Python FastAPI returns:
+ * {
+ * "match": true | false,
+ * "score": 0.7234,
+ * "message": "Face verified successfully"
+ * }
+ *
+ * The mobile app (Attendance.js → apiFaceVerify()) reads:
+ * result.match → true/false to decide check-in/out
+ * result.score → displayed for debugging
+ * result.message → shown to the user on failure
+ */
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class FaceVerifyResponseDto {
+
+    /**
+     * true → live selfie matched a registered face image
+     * false → no match or an error occurred
+     *
+     * @JsonProperty("match") ensures Jackson maps the Python response field
+     * "match" (lowercase) correctly even though the Java getter is isMatch().
+     */
+    @JsonProperty("match")
+    private boolean match;
+
+    /**
+     * Best similarity score computed by Python FastAPI.
+     * Range: 0.0 (no similarity) → 1.0 (identical).
+     * The current threshold in main.py is 0.58.
+     */
+    private double score;
+
+    /**
+     * Human-readable result message from Python FastAPI, e.g.:
+     * "Face verified successfully"
+     * "Face mismatch (score=0.423, threshold=0.58). Please ensure good lighting..."
+     * "Could not process live photo: Cannot decode image bytes"
+     */
+    private String message;
+}
+</file>
+
+<file path="src/main/java/com/blisssierra/hrms/dto/LeaveRequestDTO.java">
+package com.blisssierra.hrms.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class LeaveRequestDTO {
+    private Long employeeId; // maps to employees.id — the numeric PK
+    private String startDate;
+    private String endDate;
+    private String leaveType;
+    private String reason;
+}
+</file>
+
+<file path="src/main/java/com/blisssierra/hrms/dto/LeaveResponseDTO.java">
+package com.blisssierra.hrms.dto;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+public class LeaveResponseDTO {
+
+    private String status;
+    private String message;
+
+    /**
+     * employees.id — the numeric PK the frontend needs for all subsequent API calls
+     */
+    private Long userId;
+
+    private String name;
+    private String email;
+    private String empId;
+    private String designation;
+    private String faceImagePaths;
+
+}
+</file>
+
+<file path="src/main/java/com/blisssierra/hrms/dto/LoginRequestDto.java">
+package com.blisssierra.hrms.dto;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+
+/**
+ * Request body for POST /api/auth/login
+ *
+ * Sent by apiLogin() in api/authService.js:
+ * {
+ * "empId": "EMP001",
+ * "password": "secret123"
+ * }
+ *
+ * Note: empId is normalised to UPPERCASE in AuthService.login()
+ * before the DB lookup, so the frontend can send any casing.
+ */
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class LoginRequestDto {
+
+    /**
+     * The employee's unique ID.
+     * Case-insensitive — AuthService normalises it to uppercase.
+     */
+    private String empId;
+
+    /**
+     * Plain-text password.
+     * AuthService compares this directly against the stored value.
+     * In production, replace with BCrypt: encoder.matches(raw, stored).
+     */
+    private String password;
+}
+</file>
+
+<file path="src/main/java/com/blisssierra/hrms/dto/LoginResponseDto.java">
+package com.blisssierra.hrms.dto;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+
+/**
+ * Response body for POST /api/auth/login
+ *
+ * On success, all employee profile fields are returned so the React Native
+ * app can populate UserContext immediately after login — no second API call
+ * is needed.
+ *
+ * Success example:
+ * {
+ * "status": "success",
+ * "message": "Login successful",
+ * "name": "John Smith",
+ * "email": "john@example.com",
+ * "empId": "EMP001",
+ * "designation": "Backend Developer",
+ * "faceImagePaths": "/home/.../uploads/faces/EMP001/face_1.jpg,..."
+ * }
+ *
+ * Error example:
+ * {
+ * "status": "error",
+ * "message": "Invalid Employee ID or password",
+ * "name": null,
+ * "email": null,
+ * "empId": null,
+ * "designation": null,
+ * "faceImagePaths": null
+ * }
+ *
+ * Consumed by apiLogin() → Signin.js → UserContext.login()
+ * The faceImagePaths value is stored in UserContext and later sent
+ * to AttendanceService so Python FastAPI can compare the live selfie
+ * against the registered face images.
+ */
+@Data
+@NoArgsConstructor
+public class LoginResponseDto {
+
+    /** "success" or "error" */
+    private String status;
+
+    /** Human-readable message (shown on login failure). */
+    private String message;
+
+     private Long userId;
+
+    /** Full display name of the employee. Null on error. */
+    private String name;
+
+    /** Employee's email address. Null on error. */
+    private String email;
+
+    /** Employee's unique ID (e.g. "EMP001"). Null on error. */
+    private String empId;
+
+    /** Job title / designation. Null on error. */
+    private String designation;
+
+    /**
+     * Comma-separated absolute file-system paths of the 3 face images
+     * captured during signup (stored by FileStorageService).
+     *
+     * Used by AttendanceService.verifyFace() — it reads these paths from
+     * the Employee entity and forwards them to Python FastAPI so the
+     * face comparison can be done against the original photos.
+     *
+     * Null on error or if no face images have been registered yet.
+     */
+    private String faceImagePaths;
+}
+</file>
+
+<file path="src/main/java/com/blisssierra/hrms/dto/OtpVerifyRequestDto.java">
+package com.blisssierra.hrms.dto;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+
+/**
+ * Request body for POST /api/auth/verify-otp
+ *
+ * Sent by apiVerifyOtp() in api/authService.js:
+ * {
+ * "email": "john@example.com",
+ * "otp": "482910"
+ * }
+ */
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class OtpVerifyRequestDto {
+
+    /** The employee's email address (used to look up the OTP record). */
+    private String email;
+
+    /**
+     * The 6-digit OTP code entered by the user in the StepOtp screen
+     * (auth/Signup.js → StepOtp component).
+     */
+    private String otp;
+}
+</file>
+
+<file path="src/main/java/com/blisssierra/hrms/dto/ResendOtpRequestDto.java">
+package com.blisssierra.hrms.dto;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+
+/**
+ * Request body for POST /api/auth/resend-otp
+ *
+ * Sent by apiResendOtp() in api/authService.js:
+ * {
+ * "email": "john@example.com"
+ * }
+ *
+ * The server invalidates any existing unused OTPs for this email,
+ * generates a new one, and sends it via EmailService.
+ */
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class ResendOtpRequestDto {
+
+    /** The employee's email address to which the new OTP will be sent. */
+    private String email;
+}
+</file>
+
+<file path="src/main/java/com/blisssierra/hrms/dto/SalaryResponseDto.java">
+package com.blisssierra.hrms.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+/**
+ * Response body for GET /api/payroll/salary/{employeeId}
+ * Wraps Salary entity data for the frontend dashboard.
+ */
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class SalaryResponseDto {
+
+    private Long id;
+    private Long employeeId;
+    private int month;
+    private int year;
+    private double grossSalary;
+    private double earnedSalary;
+    private int presentDays;
+}
+</file>
+
+<file path="src/main/java/com/blisssierra/hrms/dto/SignupRequestDto.java">
+package com.blisssierra.hrms.dto;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+
+/**
+ * Request body for POST /api/auth/signup
+ *
+ * Sent by apiSignup() in api/authService.js:
+ * {
+ * "name": "John Smith",
+ * "email": "john@example.com",
+ * "empId": "EMP001",
+ * "designation": "Software Developer",
+ * "password": "secret123"
+ * }
+ */
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class SignupRequestDto {
+
+    /** Full name of the employee. */
+    private String name;
+
+    /** Work / personal email address. */
+    private String email;
+
+    /** Unique employee ID (e.g. EMP001). */
+    private String empId;
+
+    /** Job title / designation (e.g. "Backend Developer"). */
+    private String designation;
+
+    /**
+     * Plain-text password.
+     * NOTE: In production replace with BCrypt hashing via
+     * Spring Security's PasswordEncoder.
+     */
+    private String password;
+}
+</file>
+
+<file path="src/main/java/com/blisssierra/hrms/entity/Attendance.java">
+package com.blisssierra.hrms.entity;
+
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
+/**
+ * One attendance record per employee per calendar day.
+ * Merged from Project A (face-verify flow) + Project B (salary trigger flow).
+ */
+@Entity
+@Table(name = "attendance_records")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class Attendance {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    /** FK: employee's unique string ID (e.g. "EMP001"). Project A authority. */
+    @Column(name = "emp_id", nullable = false)
+    private String empId;
+
+    /** Denormalised display name — avoids JOIN in list queries. */
+    @Column(name = "employee_name", nullable = false)
+    private String employeeName;
+
+    /** Calendar date of this attendance event. */
+    @Column(name = "attendance_date", nullable = false)
+    private LocalDate attendanceDate;
+
+    /** Timestamp when employee checked in. */
+    @Column(name = "check_in_time")
+    private LocalDateTime checkInTime;
+
+    /**
+     * Timestamp when employee checked out.
+     * Null while session is still open.
+     */
+    @Column(name = "check_out_time")
+    private LocalDateTime checkOutTime;
+
+    /**
+     * Whether the employee completed a present day.
+     * Sourced from Project B — set to true on check-in, used by salary logic.
+     */
+    @Column(name = "present", nullable = false)
+    private boolean present = false;
+
+    @Column(name = "created_at")
+    private LocalDateTime createdAt;
+
+    @Column(name = "updated_at")
+    private LocalDateTime updatedAt;
+
+    @PrePersist
+    protected void onCreate() {
+        createdAt = LocalDateTime.now();
+        updatedAt = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        updatedAt = LocalDateTime.now();
+    }
+}
+</file>
+
+<file path="src/main/java/com/blisssierra/hrms/entity/Employee.java">
+package com.blisssierra.hrms.entity;
+
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import java.time.LocalDateTime;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@Entity
+@Table(name = "employees")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+public class Employee {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(nullable = false)
+    private String name;
+
+    @Column(nullable = false, unique = true)
+    private String email;
+
+    @Column(name = "emp_id", nullable = false, unique = true)
+    private String empId;
+
+    @Column(nullable = false)
+    private String designation;
+
+    @Column(nullable = false)
+    private String password;
+
+    @Column(name = "face_image_paths", columnDefinition = "TEXT")
+    private String faceImagePaths;
+
+    @Column(name = "is_verified", nullable = false)
+    private boolean verified = false;
+
+    @Column(name = "emp_code")
+    private String empCode;
+
+    @Column(name = "monthly_salary")
+    private double monthlySalary;
+
+    @Column(name = "created_at")
+    private LocalDateTime createdAt;
+
+    @Column(name = "updated_at")
+    private LocalDateTime updatedAt;
+
+    @PrePersist
+    protected void onCreate() {
+        createdAt = LocalDateTime.now();
+        updatedAt = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        updatedAt = LocalDateTime.now();
+    }
+}
+</file>
+
+<file path="src/main/java/com/blisssierra/hrms/entity/Leave.java">
+package com.blisssierra.hrms.entity;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import java.time.LocalDate;
+
+@Entity
+@Table(name = "leaves")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
+public class Leave {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    /**
+     * FK → employees.id
+     *
+     * FIX: Changed FetchType.LAZY → FetchType.EAGER so the employee
+     * association is always loaded when a Leave is fetched from the DB.
+     * This ensures Jackson can serialize employee.name / employee.empId
+     * into the JSON response, which the admin screen needs to display
+     * the correct employee name on leave cards.
+     *
+     * Previously LAZY caused the employee proxy to NOT be initialized
+     * on plain findAll() calls, so Jackson serialized it as {} or null,
+     * resulting in "Unknown" showing on every leave card in the admin UI.
+     */
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "employee_id", nullable = false)
+    private Employee employee;
+
+    private LocalDate startDate;
+    private LocalDate endDate;
+    private int totalDays;
+    private String leaveType;
+
+    @Column(length = 1000)
+    private String reason;
+
+    /** REVIEW / APPROVED / REJECTED */
+    @Column(nullable = false)
+    private String status = "REVIEW";
+
+    private LocalDate appliedDate;
+    private LocalDate actionDate;
+}
+</file>
+
+<file path="src/main/java/com/blisssierra/hrms/entity/OtpRecord.java">
+package com.blisssierra.hrms.entity;
+
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import java.time.LocalDateTime;
+
+@Entity
+@Table(name = "otp_records")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class OtpRecord {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(nullable = false)
+    private String email;
+
+    @Column(nullable = false)
+    private String otp;
+
+    @Column(name = "expires_at", nullable = false)
+    private LocalDateTime expiresAt;
+
+    @Column(name = "used", nullable = false)
+    private boolean used = false;
+
+    @Column(name = "created_at")
+    private LocalDateTime createdAt;
+
+    @PrePersist
+    protected void onCreate() {
+        createdAt = LocalDateTime.now();
+    }
+
+    public boolean isExpired() {
+        return LocalDateTime.now().isAfter(expiresAt);
+    }
+}
+</file>
+
+<file path="src/main/java/com/blisssierra/hrms/entity/Salary.java">
+package com.blisssierra.hrms.entity;
+
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+/**
+ * Monthly salary record per employee.
+ * earnedSalary increments by PER_DAY_AMOUNT on each checkout.
+ * Sourced from Project B.
+ */
+@Entity
+@Table(name = "salaries")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class Salary {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    /**
+     * References Employee.id (Long PK) — consistent with Project A's Employee.
+     * Project B used Long empId directly; kept as Long for salary isolation.
+     */
+    @Column(name = "employee_id", nullable = false)
+    private Long employeeId;
+
+    @Column(nullable = false)
+    private int month;
+
+    @Column(nullable = false)
+    private int year;
+
+    /** Full monthly CTC (e.g. 19000). */
+    private double grossSalary;
+
+    /** Accumulated earned salary this month (presentDays × perDayAmount). */
+    private double earnedSalary;
+
+    /** Count of days employee was present this month. */
+    private int presentDays;
+}
+</file>
+
+<file path="src/main/java/com/blisssierra/hrms/HrmsApplication.java">
+package com.blisssierra.hrms;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableScheduling;
+
+@SpringBootApplication
+@EnableScheduling
+public class HrmsApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(HrmsApplication.class, args);
+	}
+
+}
+</file>
+
+<file path="src/main/java/com/blisssierra/hrms/repository/AttendanceRepository.java">
+package com.blisssierra.hrms.repository;
+
+import com.blisssierra.hrms.entity.Attendance;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
+
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Optional;
+
+@Repository
+public interface AttendanceRepository extends JpaRepository<Attendance, Long> {
+
+  /** All records for a specific date, newest check-in first. */
+  List<Attendance> findByAttendanceDateOrderByCheckInTimeDesc(LocalDate date);
+
+  /** All records for an employee across all dates. */
+  List<Attendance> findByEmpIdOrderByAttendanceDateDesc(String empId);
+
+  /**
+   * Find the single attendance record for an employee on a given date.
+   * One employee = one row per day.
+   */
+  Optional<Attendance> findByEmpIdAndAttendanceDate(String empId, LocalDate attendanceDate);
+
+  /**
+   * Find the open (not yet checked-out) session for an employee on a given date.
+   */
+  @Query("""
+      SELECT a FROM Attendance a
+       WHERE a.empId = :empId
+         AND a.attendanceDate = :date
+         AND a.checkOutTime IS NULL
+       ORDER BY a.checkInTime DESC
+      """)
+  Optional<Attendance> findOpenSession(@Param("empId") String empId,
+      @Param("date") LocalDate date);
+
+  /** All records for admin overview — most recent dates first. */
+  List<Attendance> findAllByOrderByAttendanceDateDescCheckInTimeDesc();
+}
+</file>
+
+<file path="src/main/java/com/blisssierra/hrms/repository/EmployeeRepository.java">
+package com.blisssierra.hrms.repository;
+
+import com.blisssierra.hrms.entity.Employee;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import java.util.Optional;
+
+@Repository
+public interface EmployeeRepository extends JpaRepository<Employee, Long> {
+
+    Optional<Employee> findByEmail(String email);
+
+    Optional<Employee> findByEmpId(String empId);
+
+    boolean existsByEmail(String email);
+
+    boolean existsByEmpId(String empId);
+
+    /**
+     * Find by short employee code (e.g. "BSS001").
+     * Sourced from Project B.
+     */
+    Optional<Employee> findByEmpCode(String empCode);
+}
+</file>
+
+<file path="src/main/java/com/blisssierra/hrms/repository/LeaveRepository.java">
+package com.blisssierra.hrms.repository;
+
+import com.blisssierra.hrms.entity.Leave;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
+@Repository
+public interface LeaveRepository extends JpaRepository<Leave, Long> {
+
+    // Correct: navigate through the employee association
+    List<Leave> findByEmployeeId(Long employeeId);
+
+    List<Leave> findByStatus(String status);
+}
+</file>
+
+<file path="src/main/java/com/blisssierra/hrms/repository/OtpRepository.java">
+package com.blisssierra.hrms.repository;
+
+import com.blisssierra.hrms.entity.OtpRecord;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Optional;
+
+@Repository
+public interface OtpRepository extends JpaRepository<OtpRecord, Long> {
+
+    /**
+     * Find the latest unused OTP for a given email.
+     */
+    Optional<OtpRecord> findTopByEmailAndUsedFalseOrderByCreatedAtDesc(String email);
+
+    /**
+     * Mark all OTPs for a given email as used (cleanup).
+     */
+    @Modifying
+    @Transactional
+    @Query("UPDATE OtpRecord o SET o.used = true WHERE o.email = :email")
+    void markAllUsedByEmail(@Param("email") String email);
+}
+</file>
+
+<file path="src/main/java/com/blisssierra/hrms/repository/SalaryRepository.java">
+package com.blisssierra.hrms.repository;
+
+import com.blisssierra.hrms.entity.Salary;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import java.util.Optional;
+
+@Repository
+public interface SalaryRepository extends JpaRepository<Salary, Long> {
+
+    Optional<Salary> findByEmployeeIdAndMonthAndYear(Long employeeId, int month, int year);
+}
+</file>
+
+<file path="src/main/java/com/blisssierra/hrms/service/AttendanceApiService.java">
+package com.blisssierra.hrms.service;
+
+import com.blisssierra.hrms.dto.AttendanceRecordDto;
+import com.blisssierra.hrms.entity.Attendance;
+import com.blisssierra.hrms.entity.Employee;
+import com.blisssierra.hrms.entity.Salary;
+import com.blisssierra.hrms.repository.AttendanceRepository;
+import com.blisssierra.hrms.repository.EmployeeRepository;
+import com.blisssierra.hrms.repository.SalaryRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+/**
+ * AttendanceApiService (merged)
+ *
+ * Responsibilities:
+ * 1. One-row-per-day check-in / check-out (Project A logic — preserved)
+ * 2. Salary update on successful check-out (Project B logic — absorbed)
+ *
+ * Project B's AttendanceService is NOT a separate bean — its salary logic
+ * lives here to avoid a duplicate service and circular dependency.
+ */
+@Service
+public class AttendanceApiService {
+
+    private static final Logger log = LoggerFactory.getLogger(AttendanceApiService.class);
+    private static final DateTimeFormatter TIME_FMT = DateTimeFormatter.ofPattern("HH:mm");
+    private static final DateTimeFormatter DATE_FMT = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+    /**
+     * Per-day salary increment sourced from Project B.
+     * Should ideally be driven by Employee.monthlySalary / working days.
+     * Kept as a constant to preserve Project B's existing behaviour.
+     */
+    private static final double PER_DAY_AMOUNT = 612.0;
+
+    @Autowired
+    private AttendanceRepository attendanceRepository;
+
+    @Autowired
+    private EmployeeRepository employeeRepository;
+
+    @Autowired
+    private SalaryRepository salaryRepository;
+
+    // ── CHECK-IN ─────────────────────────────────────────────────────────────
+
+    /**
+     * Records a check-in for the given employee.
+     *
+     * - Duplicate guard: if a record already exists for (empId + today), returns
+     * it.
+     * - Sets present=true on the new record (Project B requirement).
+     */
+    @Transactional
+    public AttendanceRecordDto recordCheckIn(String empId) {
+        String normId = empId.trim().toUpperCase();
+        LocalDate today = LocalDate.now();
+        log.info("▶ recordCheckIn: empId={} date={}", normId, today);
+
+        Optional<Attendance> existing = attendanceRepository.findByEmpIdAndAttendanceDate(normId, today);
+        if (existing.isPresent()) {
+            log.info("  ℹ️  Duplicate check-in prevented for empId={} on {}", normId, today);
+            return toDto(existing.get());
+        }
+
+        String name = employeeRepository.findByEmpId(normId)
+                .map(Employee::getName)
+                .orElse(normId);
+
+        Attendance record = new Attendance();
+        record.setEmpId(normId);
+        record.setEmployeeName(name);
+        record.setAttendanceDate(today);
+        record.setCheckInTime(LocalDateTime.now());
+        record.setPresent(true); // Project B field
+
+        Attendance saved = attendanceRepository.save(record);
+        log.info("  ✅ Check-in saved id={} at {}", saved.getId(), saved.getCheckInTime());
+        return toDto(saved);
+    }
+
+    // ── CHECK-OUT ────────────────────────────────────────────────────────────
+
+    /**
+     * Records a check-out for the given employee.
+     *
+     * - Finds the existing record for (empId + today).
+     * - Updates checkOutTime on the same row (no new row).
+     * - Triggers salary update (Project B logic).
+     */
+    @Transactional
+    public Optional<AttendanceRecordDto> recordCheckOut(String empId) {
+        String normId = empId.trim().toUpperCase();
+        LocalDate today = LocalDate.now();
+        log.info("▶ recordCheckOut: empId={} date={}", normId, today);
+
+        Optional<Attendance> existingOpt = attendanceRepository.findByEmpIdAndAttendanceDate(normId, today);
+
+        if (existingOpt.isEmpty()) {
+            log.warn("  ⚠️  No attendance record found for empId={} on {}", normId, today);
+            return Optional.empty();
+        }
+
+        Attendance record = existingOpt.get();
+        record.setCheckOutTime(LocalDateTime.now());
+        Attendance saved = attendanceRepository.save(record);
+
+        long durationMinutes = ChronoUnit.MINUTES.between(
+                saved.getCheckInTime(), saved.getCheckOutTime());
+        log.info("  ✅ Check-out saved id={} duration={}min", saved.getId(), durationMinutes);
+
+        // Trigger salary update after successful checkout (Project B logic)
+        updateSalaryOnCheckOut(normId);
+
+        return Optional.of(toDto(saved));
+    }
+
+    // ── QUERIES ──────────────────────────────────────────────────────────────
+
+    public List<AttendanceRecordDto> getByDate(LocalDate date) {
+        return attendanceRepository
+                .findByAttendanceDateOrderByCheckInTimeDesc(date)
+                .stream().map(this::toDto).collect(Collectors.toList());
+    }
+
+    public List<AttendanceRecordDto> getAll() {
+        return attendanceRepository
+                .findAllByOrderByAttendanceDateDescCheckInTimeDesc()
+                .stream().map(this::toDto).collect(Collectors.toList());
+    }
+
+    // ── SALARY LOGIC (absorbed from Project B) ───────────────────────────────
+
+    /**
+     * Updates or creates the monthly salary record for an employee
+     * after a successful check-out.
+     *
+     * Logic sourced from Project B's AttendanceService.updateSalary().
+     * Key change: empId is now String (Project A authority).
+     * Salary.employeeId is resolved from Employee.id (Long) via lookup.
+     */
+    private void updateSalaryOnCheckOut(String empId) {
+        try {
+            Employee employee = employeeRepository.findByEmpId(empId).orElse(null);
+            if (employee == null) {
+                log.warn("  ⚠️  updateSalary: employee not found for empId={}", empId);
+                return;
+            }
+
+            Long employeeNumericId = employee.getId();
+            LocalDate now = LocalDate.now();
+            int month = now.getMonthValue();
+            int year = now.getYear();
+
+            Salary salary = salaryRepository
+                    .findByEmployeeIdAndMonthAndYear(employeeNumericId, month, year)
+                    .orElseGet(() -> {
+                        Salary s = new Salary();
+                        s.setEmployeeId(employeeNumericId);
+                        s.setMonth(month);
+                        s.setYear(year);
+                        // Seed grossSalary from Employee.monthlySalary if set
+                        s.setGrossSalary(employee.getMonthlySalary());
+                        s.setEarnedSalary(0);
+                        s.setPresentDays(0);
+                        return s;
+                    });
+
+            salary.setPresentDays(salary.getPresentDays() + 1);
+            salary.setEarnedSalary(salary.getEarnedSalary() + PER_DAY_AMOUNT);
+            salaryRepository.save(salary);
+
+            log.info("  💰 Salary updated for empId={}: presentDays={}, earned={}",
+                    empId, salary.getPresentDays(), salary.getEarnedSalary());
+
+        } catch (Exception ex) {
+            // Non-fatal — log but don't fail the check-out response
+            log.error("  ❌ Salary update failed for empId={}: {}", empId, ex.getMessage(), ex);
+        }
+    }
+
+    // ── HELPERS ──────────────────────────────────────────────────────────────
+
+    private AttendanceRecordDto toDto(Attendance a) {
+        String checkIn = a.getCheckInTime() != null ? a.getCheckInTime().format(TIME_FMT) : null;
+        String checkOut = a.getCheckOutTime() != null ? a.getCheckOutTime().format(TIME_FMT) : null;
+
+        long durationMinutes = -1;
+        if (a.getCheckInTime() != null && a.getCheckOutTime() != null) {
+            durationMinutes = ChronoUnit.MINUTES.between(
+                    a.getCheckInTime(), a.getCheckOutTime());
+        }
+
+        String status = (a.getCheckOutTime() == null) ? "Active" : "Present";
+
+        return new AttendanceRecordDto(
+                a.getId(),
+                a.getEmpId(),
+                a.getEmployeeName(),
+                a.getAttendanceDate().format(DATE_FMT),
+                checkIn,
+                checkOut,
+                durationMinutes,
+                status);
+    }
+}
+</file>
+
+<file path="src/main/java/com/blisssierra/hrms/service/AttendanceService.java">
+package com.blisssierra.hrms.service;
+
+import com.blisssierra.hrms.dto.FaceVerifyResponseDto;
+import com.blisssierra.hrms.entity.Employee;
+import com.blisssierra.hrms.repository.EmployeeRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.http.*;
+import org.springframework.stereotype.Service;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.Optional;
+
+/**
+ * AttendanceService
+ *
+ * Proxies face verification to Python FastAPI, then persists the
+ * check-in / check-out record if verification succeeds.
+ *
+ * KEY FIX:
+ * isClockedIn = true → employee is currently clocked IN → record CHECK-OUT
+ * isClockedIn = false → employee is not clocked in → record CHECK-IN
+ *
+ * The AttendanceApiService now guarantees one row per employee per day,
+ * so this service simply calls the correct method without worrying about
+ * duplicate rows.
+ */
+@Service
+public class AttendanceService {
+
+    private static final Logger log = LoggerFactory.getLogger(AttendanceService.class);
+
+    @Value("${python.face.api.url}")
+    private String pythonApiUrl;
+
+    @Autowired
+    private EmployeeRepository employeeRepository;
+
+    @Autowired
+    private AttendanceApiService attendanceApiService;
+
+    /**
+     * Main entry point called by AttendanceController.
+     *
+     * @param empId       employee ID
+     * @param livePhoto   live selfie captured by the mobile / web app
+     * @param isClockedIn true → currently clocked IN → this call is a CHECK-OUT
+     *                    false → not clocked in → this call is a CHECK-IN
+     */
+    public FaceVerifyResponseDto verifyFace(String empId,
+            MultipartFile livePhoto,
+            boolean isClockedIn) {
+
+        log.info("▶ verifyFace: empId={}, photo={}B, isClockedIn={}",
+                empId,
+                livePhoto != null ? livePhoto.getSize() : 0,
+                isClockedIn);
+
+        // ── Basic validation ─────────────────────────────────────────────────
+        if (empId == null || empId.trim().isEmpty()) {
+            return fail("Employee ID is required");
+        }
+
+        String normalizedEmpId = empId.trim().toUpperCase();
+
+        Optional<Employee> optional = employeeRepository.findByEmpId(normalizedEmpId);
+        if (optional.isEmpty()) {
+            log.warn("Employee not found: empId={}", normalizedEmpId);
+            return fail("Employee not found: " + normalizedEmpId);
+        }
+
+        Employee employee = optional.get();
+        String faceImagePaths = employee.getFaceImagePaths();
+
+        log.info("  faceImagePaths from DB: {}", faceImagePaths);
+
+        // ── No face registered — allow but still record attendance ───────────
+        if (faceImagePaths == null || faceImagePaths.trim().isEmpty()) {
+            log.warn("  No face paths for empId={} — recording attendance without face check",
+                    normalizedEmpId);
+            persistAttendance(normalizedEmpId, isClockedIn);
+            return new FaceVerifyResponseDto(true, 1.0,
+                    "No registered face — attendance recorded");
+        }
+
+        // ── Photo is required when face images exist ─────────────────────────
+        if (livePhoto == null || livePhoto.isEmpty()) {
+            return fail("No live photo provided. Please allow camera access and try again.");
+        }
+
+        // ── Forward to Python FastAPI for face comparison ────────────────────
+        FaceVerifyResponseDto result = forwardToPython(normalizedEmpId, faceImagePaths, livePhoto);
+
+        // ── Persist attendance only on successful verification ───────────────
+        if (result.isMatch()) {
+            persistAttendance(normalizedEmpId, isClockedIn);
+        }
+
+        return result;
+    }
+
+    /**
+     * Backward-compatible overload — defaults isClockedIn=false (check-in).
+     */
+    public FaceVerifyResponseDto verifyFace(String empId, MultipartFile livePhoto) {
+        return verifyFace(empId, livePhoto, false);
+    }
+
+    // ─────────────────────────────────────────────────────────────────────────
+    // PRIVATE HELPERS
+    // ─────────────────────────────────────────────────────────────────────────
+
+    /**
+     * Persist attendance record after successful face verification.
+     *
+     * isClockedIn = true → employee was clocked in → now checking OUT
+     * isClockedIn = false → employee was not clocked in → now checking IN
+     *
+     * AttendanceApiService handles the one-record-per-day guarantee internally.
+     */
+    private void persistAttendance(String empId, boolean isClockedIn) {
+        try {
+            if (isClockedIn) {
+                // Currently clocked in → record check-out
+                var result = attendanceApiService.recordCheckOut(empId);
+                if (result.isPresent()) {
+                    log.info("  ✅ Check-out persisted for empId={}", empId);
+                } else {
+                    log.warn("  ⚠️  Check-out called but no open session found for empId={}", empId);
+                }
+            } else {
+                // Not clocked in → record check-in (duplicate guard inside service)
+                attendanceApiService.recordCheckIn(empId);
+                log.info("  ✅ Check-in persisted for empId={}", empId);
+            }
+        } catch (Exception ex) {
+            // Log but don't fail the face-verify response
+            log.error("  ❌ Failed to persist attendance for empId={}: {}", empId, ex.getMessage(), ex);
+        }
+    }
+
+    /**
+     * Forward the live selfie + employee data to Python FastAPI for face
+     * comparison.
+     */
+    private FaceVerifyResponseDto forwardToPython(String empId,
+            String faceImagePaths,
+            MultipartFile livePhoto) {
+        String url = pythonApiUrl + "/api/face/verify";
+        log.info("  Forwarding to Python: {}", url);
+
+        try {
+            RestTemplate restTemplate = new RestTemplate();
+
+            byte[] photoBytes = livePhoto.getBytes();
+            String filename = (livePhoto.getOriginalFilename() != null
+                    && !livePhoto.getOriginalFilename().isEmpty())
+                            ? livePhoto.getOriginalFilename()
+                            : "live.jpg";
+
+            MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
+            body.add("empId", empId);
+            body.add("faceImagePaths", faceImagePaths);
+
+            ByteArrayResource photoResource = new ByteArrayResource(photoBytes) {
+                @Override
+                public String getFilename() {
+                    return filename;
+                }
+            };
+
+            HttpHeaders photoHeaders = new HttpHeaders();
+            photoHeaders.setContentType(MediaType.IMAGE_JPEG);
+            HttpEntity<ByteArrayResource> photoPart = new HttpEntity<>(photoResource, photoHeaders);
+            body.add("photo", photoPart);
+
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+            HttpEntity<MultiValueMap<String, Object>> request = new HttpEntity<>(body, headers);
+
+            ResponseEntity<FaceVerifyResponseDto> response = restTemplate.postForEntity(url, request,
+                    FaceVerifyResponseDto.class);
+
+            if (response.getStatusCode().is2xxSuccessful() && response.getBody() != null) {
+                FaceVerifyResponseDto res = response.getBody();
+                log.info("  Python response: match={}, score={}, msg={}",
+                        res.isMatch(), res.getScore(), res.getMessage());
+                return res;
+            } else {
+                log.error("  Python returned non-2xx: {}", response.getStatusCode());
+                return fail("Face verification service returned an error. Please try again.");
+            }
+
+        } catch (Exception e) {
+            log.error("  Error calling Python FastAPI: {}", e.getMessage(), e);
+            return fail(
+                    "Could not reach face verification service. " +
+                            "Make sure the Python server is running on " + pythonApiUrl +
+                            ". Error: " + e.getMessage());
+        }
+    }
+
+    private FaceVerifyResponseDto fail(String message) {
+        return new FaceVerifyResponseDto(false, 0.0, message);
+    }
+}
+</file>
+
+<file path="src/main/java/com/blisssierra/hrms/service/AuthService.java">
+package com.blisssierra.hrms.service;
+import com.blisssierra.hrms.dto.*;
+import com.blisssierra.hrms.entity.Employee;
+import com.blisssierra.hrms.repository.EmployeeRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+import java.util.List;
+import java.util.Optional;
+@Service
+public class AuthService {
+    private static final Logger log = LoggerFactory.getLogger(AuthService.class);
+    @Autowired
+    private EmployeeRepository employeeRepository;
+    @Autowired
+    private OtpService otpService;
+    @Autowired
+    private FileStorageService fileStorageService;
+    // ─────────────────────────────────────────────────────────────────────────
+    // STEP 1: Signup — save employee (unverified), send OTP
+    // ─────────────────────────────────────────────────────────────────────────
+    /**
+     * Handles POST /api/auth/signup
+     *
+     * 1. Validates email/empId uniqueness
+     * 2. Saves employee as unverified (face paths not set yet)
+     * 3. Sends OTP to the provided email
+     *
+     * The employee record is saved NOW so subsequent face-upload can find it by
+     * email.
+     * verified = false until OTP is confirmed.
+     */
+    public ApiResponseDto signup(SignupRequestDto req) {
+        log.info("Signup request: empId={}, email={}", req.getEmpId(), req.getEmail());
+        // Validate required fields
+        if (isBlank(req.getName()) || isBlank(req.getEmail()) ||
+                isBlank(req.getEmpId()) || isBlank(req.getDesignation()) ||
+                isBlank(req.getPassword())) {
+            return new ApiResponseDto("error", "All fields are required");
+        }
+        String email = req.getEmail().trim().toLowerCase();
+        String empId = req.getEmpId().trim().toUpperCase();
+        // Check for duplicate email
+        if (employeeRepository.existsByEmail(email)) {
+            // If already registered but NOT verified, allow re-registration
+            Optional<Employee> existing = employeeRepository.findByEmail(email);
+            if (existing.isPresent() && existing.get().isVerified()) {
+                return new ApiResponseDto("error", "An account with this email already exists");
+            }
+            // Unverified → delete old record and re-register
+            existing.ifPresent(e -> {
+                fileStorageService.deleteFaceImages(e.getEmpId());
+                employeeRepository.delete(e);
+                log.info("Deleted unverified duplicate account for email={}", email);
+            });
+        }
+        // Check for duplicate empId
+        if (employeeRepository.existsByEmpId(empId)) {
+            Optional<Employee> existing = employeeRepository.findByEmpId(empId);
+            if (existing.isPresent() && existing.get().isVerified()) {
+                return new ApiResponseDto("error", "An account with this Employee ID already exists");
+            }
+            existing.ifPresent(e -> {
+                fileStorageService.deleteFaceImages(e.getEmpId());
+                employeeRepository.delete(e);
+            });
+        }
+        // Save employee record (unverified, no face paths yet)
+        Employee employee = new Employee();
+        employee.setName(req.getName().trim());
+        employee.setEmail(email);
+        employee.setEmpId(empId);
+        employee.setDesignation(req.getDesignation().trim());
+        employee.setPassword(req.getPassword()); // Plain text — see NOTE below
+        employee.setVerified(false);
+        employee.setFaceImagePaths("");
+        employeeRepository.save(employee);
+        log.info("Employee saved (unverified): empId={}, email={}", empId, email);
+        /*
+         * NOTE ON PASSWORDS:
+         * For production use BCryptPasswordEncoder. For this project we store plain
+         * text
+         * so the login check is straightforward without adding Spring Security
+         * dependency.
+         * To add BCrypt: inject PasswordEncoder, call encoder.encode(req.getPassword())
+         * here, and encoder.matches(raw, stored) in login().
+         */
+        // Send OTP
+        try {
+            otpService.generateAndSendOtp(email, req.getName().trim());
+        } catch (Exception e) {
+            log.error("OTP send failed for {}: {}", email, e.getMessage());
+            // Delete the employee we just saved to keep DB clean
+            employeeRepository.delete(employee);
+            return new ApiResponseDto("error",
+                    "Registration failed: Could not send OTP email. " +
+                            "Please check your email address and try again. Error: " + e.getMessage());
+        }
+        return new ApiResponseDto("success",
+                "OTP sent to " + email + ". Please check your inbox and complete face registration first.");
+    }
+    // ─────────────────────────────────────────────────────────────────────────
+    // STEP 2: Upload Face Images — save 3 selfies, store paths in DB
+    // ─────────────────────────────────────────────────────────────────────────
+    /**
+     * Handles POST /api/auth/upload-face (multipart)
+     *
+     * 1. Validates employee exists (must have signed up first)
+     * 2. Saves 3 face images to uploads/faces/{empId}/
+     * 3. Stores the absolute paths in employee.faceImagePaths (comma-separated)
+     *
+     * These absolute paths are later sent to Python FastAPI for face comparison
+     * during check-in / check-out.
+     */
+    public FaceUploadResponseDto uploadFace(String email, List<MultipartFile> images) {
+        log.info("Face upload request: email={}, imageCount={}", email, images == null ? 0 : images.size());
+        if (isBlank(email)) {
+            return new FaceUploadResponseDto("error", "Email is required", null);
+        }
+        String normalizedEmail = email.trim().toLowerCase();
+        Optional<Employee> optional = employeeRepository.findByEmail(normalizedEmail);
+        if (optional.isEmpty()) {
+            return new FaceUploadResponseDto("error",
+                    "No registration found for " + normalizedEmail + ". Please sign up first.", null);
+        }
+        Employee employee = optional.get();
+        if (images == null || images.isEmpty()) {
+            return new FaceUploadResponseDto("error", "No images received", null);
+        }
+        // Filter out null/empty entries
+        List<MultipartFile> validImages = images.stream()
+                .filter(f -> f != null && !f.isEmpty())
+                .toList();
+        if (validImages.size() < 3) {
+            return new FaceUploadResponseDto("error",
+                    "Exactly 3 face images are required. Received: " + validImages.size(), null);
+        }
+        // Save images to disk and get absolute paths
+        List<String> paths;
+        try {
+            paths = fileStorageService.saveFaceImages(employee.getEmpId(), validImages.subList(0, 3));
+        } catch (Exception e) {
+            log.error("File save error for empId={}: {}", employee.getEmpId(), e.getMessage());
+            return new FaceUploadResponseDto("error", "Failed to save face images: " + e.getMessage(), null);
+        }
+        if (paths.isEmpty()) {
+            return new FaceUploadResponseDto("error", "No images were saved successfully", null);
+        }
+        // Store comma-separated absolute paths in DB
+        String pathsCsv = String.join(",", paths);
+        employee.setFaceImagePaths(pathsCsv);
+        employeeRepository.save(employee);
+        log.info("✅ Face images saved for empId={}: {}", employee.getEmpId(), pathsCsv);
+        return new FaceUploadResponseDto("success",
+                "Face images uploaded successfully (" + paths.size() + " photos stored)", pathsCsv);
+    }
+    // ─────────────────────────────────────────────────────────────────────────
+    // STEP 3: Verify OTP — mark employee as verified
+    // ─────────────────────────────────────────────────────────────────────────
+    /**
+     * Handles POST /api/auth/verify-otp
+     *
+     * Validates OTP and marks employee as verified.
+     * Employee can now log in.
+     */
+    public ApiResponseDto verifyOtp(OtpVerifyRequestDto req) {
+        log.info("OTP verify request: email={}", req.getEmail());
+        if (isBlank(req.getEmail()) || isBlank(req.getOtp())) {
+            return new ApiResponseDto("error", "Email and OTP are required");
+        }
+        String email = req.getEmail().trim().toLowerCase();
+        boolean valid = otpService.validateOtp(email, req.getOtp().trim());
+        if (!valid) {
+            return new ApiResponseDto("error", "Invalid or expired OTP. Please request a new one.");
+        }
+        // Mark employee as verified
+        Optional<Employee> optional = employeeRepository.findByEmail(email);
+        if (optional.isPresent()) {
+            Employee employee = optional.get();
+            employee.setVerified(true);
+            employeeRepository.save(employee);
+            log.info("✅ Employee verified: empId={}, email={}", employee.getEmpId(), email);
+        } else {
+            log.warn("OTP verified but employee not found: {}", email);
+        }
+        return new ApiResponseDto("success", "Email verified successfully! You can now sign in.");
+    }
+    // ─────────────────────────────────────────────────────────────────────────
+    // Resend OTP
+    // ─────────────────────────────────────────────────────────────────────────
+    /**
+     * Handles POST /api/auth/resend-otp
+     */
+    public ApiResponseDto resendOtp(ResendOtpRequestDto req) {
+        log.info("Resend OTP request: email={}", req.getEmail());
+        if (isBlank(req.getEmail())) {
+            return new ApiResponseDto("error", "Email is required");
+        }
+        String email = req.getEmail().trim().toLowerCase();
+        Optional<Employee> optional = employeeRepository.findByEmail(email);
+        if (optional.isEmpty()) {
+            return new ApiResponseDto("error", "No account found for " + email);
+        }
+        try {
+            otpService.generateAndSendOtp(email, optional.get().getName());
+        } catch (Exception e) {
+            return new ApiResponseDto("error", "Failed to resend OTP: " + e.getMessage());
+        }
+        return new ApiResponseDto("success", "OTP resent to " + email);
+    }
+    // ─────────────────────────────────────────────────────────────────────────
+    // Login
+    // ─────────────────────────────────────────────────────────────────────────
+    /**
+     * Handles POST /api/auth/login
+     *
+     * Returns all employee profile data needed by the frontend:
+     * name, email, empId, designation, faceImagePaths
+     *
+     * faceImagePaths is the comma-separated absolute paths stored during face
+     * upload.
+     * The frontend stores this in UserContext.
+     * When check-in is triggered, Attendance.js sends empId to Spring Boot,
+     * which looks up faceImagePaths from DB and passes them to Python FastAPI.
+     */
+    public LoginResponseDto login(LoginRequestDto req) {
+        log.info("Login request: empId={}", req.getEmpId());
+        if (isBlank(req.getEmpId()) || isBlank(req.getPassword())) {
+            return errorLogin("Employee ID and password are required");
+        }
+        String empId = req.getEmpId().trim().toUpperCase();
+        Optional<Employee> optional = employeeRepository.findByEmpId(empId);
+        if (optional.isEmpty()) {
+            log.warn("Login failed: empId={} not found", empId);
+            return errorLogin("Invalid Employee ID or password");
+        }
+        Employee employee = optional.get();
+        // Check password (plain text comparison)
+        if (!employee.getPassword().equals(req.getPassword().trim())) {
+            log.warn("Login failed: wrong password for empId={}", empId);
+            return errorLogin("Invalid Employee ID or password");
+        }
+        // Check verified
+        if (!employee.isVerified()) {
+            log.warn("Login failed: empId={} not verified", empId);
+            return errorLogin("Your account is not verified. Please complete the OTP verification during signup.");
+        }
+        log.info("✅ Login success: empId={}, name={}", empId, employee.getName());
+        LoginResponseDto res = new LoginResponseDto();
+        res.setStatus("success");
+        res.setMessage("Login successful");
+        res.setUserId(employee.getId()); // 👈 MAIN FIX
+        res.setName(employee.getName());
+        res.setEmail(employee.getEmail());
+        res.setEmpId(employee.getEmpId());
+        res.setDesignation(employee.getDesignation());
+        res.setFaceImagePaths(employee.getFaceImagePaths());
+        return res;
+    }
+    // ─────────────────────────────────────────────────────────────────────────
+    // Helpers
+    // ─────────────────────────────────────────────────────────────────────────
+    private LoginResponseDto errorLogin(String message) {
+        LoginResponseDto res = new LoginResponseDto();
+        res.setStatus("error");
+        res.setMessage(message);
+        return res;
+    }
+    private boolean isBlank(String s) {
+        return s == null || s.trim().isEmpty();
+    }
+}
+</file>
+
+<file path="src/main/java/com/blisssierra/hrms/service/EmailService.java">
+package com.blisssierra.hrms.service;
+
+import jakarta.mail.MessagingException;
+import jakarta.mail.internet.MimeMessage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.stereotype.Service;
+
+@Service
+public class EmailService {
+
+    private static final Logger log = LoggerFactory.getLogger(EmailService.class);
+
+    @Autowired
+    private JavaMailSender mailSender;
+
+    @Value("${spring.mail.username}")
+    private String fromEmail;
+
+    /**
+     * Send a beautifully designed HTML OTP email to the employee during signup.
+     */
+    public void sendOtpEmail(String toEmail, String employeeName, String otp) {
+        try {
+            MimeMessage message = mailSender.createMimeMessage();
+
+            // true = multipart, true = html
+            MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
+
+            helper.setFrom(fromEmail, "Bliss Sierra Software Solutions");
+            helper.setTo(toEmail);
+            helper.setSubject("Your OTP for Registration — Bliss Sierra");
+            helper.setText(buildHtmlBody(employeeName, otp), true); // true = isHtml
+
+            mailSender.send(message);
+            log.info("✅ OTP HTML email sent to: {}", toEmail);
+
+        } catch (MessagingException e) {
+            log.error("❌ Failed to send OTP email to {}: {}", toEmail, e.getMessage());
+            throw new RuntimeException("Failed to send OTP email: " + e.getMessage(), e);
+        } catch (Exception e) {
+            log.error("❌ Unexpected error sending OTP email to {}: {}", toEmail, e.getMessage());
+            throw new RuntimeException("Failed to send OTP email: " + e.getMessage(), e);
+        }
+    }
+
+    // ─────────────────────────────────────────────────────────────────────────
+    // HTML EMAIL TEMPLATE
+    // ─────────────────────────────────────────────────────────────────────────
+
+    private String buildHtmlBody(String name, String otp) {
+        // Split OTP into individual characters for the big digit display
+        String[] digits = otp.split("");
+        StringBuilder digitBoxes = new StringBuilder();
+        for (String digit : digits) {
+            digitBoxes.append(
+                    "<td style=\"padding: 0 6px;\">" +
+                            "<div style=\"" +
+                            "width: 48px;" +
+                            "height: 60px;" +
+                            "background: #fff;" +
+                            "border: 2px solid #e2e8f0;" +
+                            "border-radius: 10px;" +
+                            "display: inline-block;" +
+                            "line-height: 60px;" +
+                            "text-align: center;" +
+                            "font-size: 28px;" +
+                            "font-weight: 800;" +
+                            "color: #E8500A;" +
+                            "font-family: 'Courier New', monospace;" +
+                            "box-shadow: 0 2px 8px rgba(232,80,10,0.10);" +
+                            "\">" + digit + "</div>" +
+                            "</td>");
+        }
+
+        return "<!DOCTYPE html>" +
+                "<html lang=\"en\">" +
+                "<head>" +
+                "  <meta charset=\"UTF-8\" />" +
+                "  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />" +
+                "  <title>OTP Verification — Bliss Sierra</title>" +
+                "</head>" +
+                "<body style=\"margin:0;padding:0;background:#f0f4f8;font-family:'Segoe UI',Arial,sans-serif;\">" +
+
+                "<!-- Outer wrapper -->" +
+                "<table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"background:#f0f4f8;padding:40px 0;\">"
+                +
+                "<tr><td align=\"center\">" +
+
+                "<!-- Card -->" +
+                "<table width=\"600\" cellpadding=\"0\" cellspacing=\"0\" " +
+                "style=\"max-width:600px;width:100%;background:#ffffff;border-radius:16px;" +
+                "overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.10);\">" +
+
+                "<!-- ══ HEADER BANNER ══ -->" +
+                "<tr>" +
+                "  <td style=\"background:linear-gradient(135deg,#E8500A 0%,#c94008 100%);padding:36px 40px 32px;text-align:center;\">"
+                +
+                "    <table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\">" +
+                "      <tr>" +
+                "        <td align=\"center\" style=\"padding-bottom:10px;\">" +
+                "          <!-- Logo icon -->" +
+                "          <div style=\"display:inline-block;background:rgba(255,255,255,0.15);border-radius:50%;width:64px;height:64px;line-height:64px;font-size:30px;margin-bottom:12px;\">🏢</div>"
+                +
+                "        </td>" +
+                "      </tr>" +
+                "      <tr>" +
+                "        <td align=\"center\">" +
+                "          <h1 style=\"margin:0;color:#ffffff;font-size:26px;font-weight:900;letter-spacing:2px;text-transform:uppercase;\">Bliss Sierra</h1>"
+                +
+                "          <p style=\"margin:4px 0 0;color:rgba(255,255,255,0.85);font-size:13px;letter-spacing:3px;text-transform:uppercase;font-weight:500;\">Software Solutions</p>"
+                +
+                "        </td>" +
+                "      </tr>" +
+                "    </table>" +
+                "  </td>" +
+                "</tr>" +
+
+                "<!-- ══ GREETING ══ -->" +
+                "<tr>" +
+                "  <td style=\"padding:40px 44px 10px;\">" +
+                "    <h2 style=\"margin:0 0 8px;font-size:22px;color:#1a202c;font-weight:700;\">Hello, "
+                + escapeHtml(name) + "! 👋</h2>" +
+                "    <p style=\"margin:0;font-size:15px;color:#4a5568;line-height:1.7;\">" +
+                "      Welcome to <strong style=\"color:#E8500A;\">Bliss Sierra Software Solutions HRMS</strong>.<br/>"
+                +
+                "      To complete your employee account registration, please use the One-Time Password (OTP) below." +
+                "    </p>" +
+                "  </td>" +
+                "</tr>" +
+
+                "<!-- ══ OTP BOX ══ -->" +
+                "<tr>" +
+                "  <td style=\"padding:30px 44px;\">" +
+                "    <div style=\"background:linear-gradient(135deg,#fff5f0 0%,#fff0eb 100%);border:1.5px solid #fbd5c5;border-radius:14px;padding:28px 20px;text-align:center;\">"
+                +
+                "      <p style=\"margin:0 0 16px;font-size:12px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#9b4010;\">Your One-Time Password</p>"
+                +
+                "      <!-- Digit boxes -->" +
+                "      <table cellpadding=\"0\" cellspacing=\"0\" style=\"margin:0 auto 16px;\">" +
+                "        <tr>" + digitBoxes + "</tr>" +
+                "      </table>" +
+                "      <p style=\"margin:0;font-size:13px;color:#a0aec0;\">" +
+                "        ⏱&nbsp; Valid for <strong>10 minutes</strong> only" +
+                "      </p>" +
+                "    </div>" +
+                "  </td>" +
+                "</tr>" +
+
+                "<!-- ══ SECURITY NOTE ══ -->" +
+                "<tr>" +
+                "  <td style=\"padding:0 44px 32px;\">" +
+                "    <div style=\"background:#f7fafc;border-left:4px solid #E8500A;border-radius:0 8px 8px 0;padding:14px 18px;\">"
+                +
+                "      <p style=\"margin:0;font-size:13px;color:#4a5568;line-height:1.7;\">" +
+                "        🔒 <strong>Security Notice:</strong> Never share this OTP with anyone. " +
+                "        Bliss Sierra staff will <em>never</em> ask for your OTP via phone or email." +
+                "      </p>" +
+                "    </div>" +
+                "  </td>" +
+                "</tr>" +
+
+                "<!-- ══ IGNORE NOTICE ══ -->" +
+                "<tr>" +
+                "  <td style=\"padding:0 44px 36px;\">" +
+                "    <p style=\"margin:0;font-size:13px;color:#718096;line-height:1.7;\">" +
+                "      If you did not initiate this registration request, please ignore this email " +
+                "      or contact our HR team immediately at " +
+                "      <a href=\"mailto:hr@blisssierra.com\" style=\"color:#E8500A;text-decoration:none;font-weight:600;\">hr@blisssierra.com</a>."
+                +
+                "    </p>" +
+                "  </td>" +
+                "</tr>" +
+
+                "<!-- ══ DIVIDER ══ -->" +
+                "<tr>" +
+                "  <td style=\"padding:0 44px;\"><hr style=\"border:none;border-top:1px solid #e2e8f0;margin:0;\"/></td>"
+                +
+                "</tr>" +
+
+                "<!-- ══ FOOTER ══ -->" +
+                "<tr>" +
+                "  <td style=\"padding:24px 44px 28px;text-align:center;\">" +
+                "    <p style=\"margin:0 0 4px;font-size:13px;font-weight:700;color:#2d3748;\">Bliss Sierra Software Solutions</p>"
+                +
+                "    <p style=\"margin:0;font-size:12px;color:#a0aec0;\">© 2026 Bliss Sierra Software Solutions · All rights reserved</p>"
+                +
+                "    <p style=\"margin:8px 0 0;font-size:11px;color:#cbd5e0;\">This is an automated email — please do not reply directly.</p>"
+                +
+                "  </td>" +
+                "</tr>" +
+
+                "</table>" +
+                "<!-- End card -->" +
+
+                "</td></tr>" +
+                "</table>" +
+                "<!-- End outer wrapper -->" +
+
+                "</body>" +
+                "</html>";
+    }
+
+    /**
+     * Escape HTML special characters to prevent injection in the employee name
+     * field.
+     */
+    private String escapeHtml(String input) {
+        if (input == null)
+            return "";
+        return input
+                .replace("&", "&amp;")
+                .replace("<", "&lt;")
+                .replace(">", "&gt;")
+                .replace("\"", "&quot;")
+                .replace("'", "&#x27;");
+    }
+}
+</file>
+
+<file path="src/main/java/com/blisssierra/hrms/service/FileStorageService.java">
+package com.blisssierra.hrms.service;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * Handles saving face images to the local file system.
+ *
+ * Directory structure created:
+ * {app.upload.dir}/
+ * EMP001/
+ * face_1.jpg
+ * face_2.jpg
+ * face_3.jpg
+ * EMP002/
+ * face_1.jpg
+ * ...
+ *
+ * The ABSOLUTE paths are stored in the DB so Python FastAPI can read them
+ * directly.
+ */
+@Service
+public class FileStorageService {
+
+    private static final Logger log = LoggerFactory.getLogger(FileStorageService.class);
+
+    @Value("${app.upload.dir}")
+    private String uploadDir;
+
+    /**
+     * Save multiple face images for an employee.
+     * Returns list of ABSOLUTE file-system paths (used by Python for face
+     * comparison).
+     *
+     * @param empId  employee ID (used as sub-folder name)
+     * @param images list of uploaded image files (exactly 3)
+     * @return list of absolute paths to saved images
+     */
+    public List<String> saveFaceImages(String empId, List<MultipartFile> images) throws IOException {
+        // Resolve the upload directory to an absolute path
+        Path basePath = Paths.get(uploadDir).toAbsolutePath().normalize();
+        Path empDir = basePath.resolve(empId);
+
+        // Create directory if it doesn't exist
+        Files.createDirectories(empDir);
+        log.info("Saving face images for empId={} to: {}", empId, empDir);
+
+        List<String> savedPaths = new ArrayList<>();
+
+        for (int i = 0; i < images.size(); i++) {
+            MultipartFile file = images.get(i);
+
+            if (file == null || file.isEmpty()) {
+                log.warn("Image {} is null or empty — skipping", i + 1);
+                continue;
+            }
+
+            // Always save as face_1.jpg, face_2.jpg, face_3.jpg
+            String filename = "face_" + (i + 1) + ".jpg";
+            Path targetPath = empDir.resolve(filename);
+
+            // Copy file bytes to disk (overwrite if re-registering)
+            Files.copy(file.getInputStream(), targetPath, StandardCopyOption.REPLACE_EXISTING);
+
+            String absolutePath = targetPath.toAbsolutePath().toString();
+            savedPaths.add(absolutePath);
+            log.info("  Saved: {}", absolutePath);
+        }
+
+        if (savedPaths.isEmpty()) {
+            throw new IOException("No valid images were saved for empId=" + empId);
+        }
+
+        log.info("Total face images saved for {}: {}", empId, savedPaths.size());
+        return savedPaths;
+    }
+
+    /**
+     * Delete the face images folder for an employee (used when re-registering).
+     */
+    public void deleteFaceImages(String empId) {
+        try {
+            Path basePath = Paths.get(uploadDir).toAbsolutePath().normalize();
+            Path empDir = basePath.resolve(empId);
+            if (Files.exists(empDir)) {
+                Files.walk(empDir)
+                        .sorted(java.util.Comparator.reverseOrder())
+                        .map(Path::toFile)
+                        .forEach(File::delete);
+                log.info("Deleted face images folder for empId={}", empId);
+            }
+        } catch (IOException e) {
+            log.warn("Could not delete face images for empId={}: {}", empId, e.getMessage());
+        }
+    }
+
+    /**
+     * Get the absolute path for the upload directory (for debugging).
+     */
+    public String getUploadDirAbsolutePath() {
+        return Paths.get(uploadDir).toAbsolutePath().normalize().toString();
+    }
+}
+</file>
+
+<file path="src/main/java/com/blisssierra/hrms/service/LeaveService.java">
+package com.blisssierra.hrms.service;
+import com.blisssierra.hrms.dto.LeaveRequestDTO;
+import com.blisssierra.hrms.entity.Employee;
+import com.blisssierra.hrms.entity.Leave;
+import com.blisssierra.hrms.repository.EmployeeRepository;
+import com.blisssierra.hrms.repository.LeaveRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.util.List;
+@Service
+public class LeaveService {
+    private static final Logger log = LoggerFactory.getLogger(LeaveService.class);
+    @Autowired
+    private LeaveRepository leaveRepository;
+    @Autowired
+    private EmployeeRepository employeeRepository;
+    public Leave applyLeave(LeaveRequestDTO dto) {
+        // Look up Employee by numeric id (employees.id — the PK returned at login)
+        Employee employee = employeeRepository.findById(dto.getEmployeeId())
+                .orElseThrow(() -> new RuntimeException(
+                        "Employee not found: id=" + dto.getEmployeeId()));
+        LocalDate start = LocalDate.parse(dto.getStartDate());
+        LocalDate end = LocalDate.parse(dto.getEndDate());
+        int days = (int) ChronoUnit.DAYS.between(start, end) + 1;
+        Leave leave = new Leave();
+        leave.setEmployee(employee); // uses the Employee association, not userId
+        leave.setStartDate(start);
+        leave.setEndDate(end);
+        leave.setTotalDays(days);
+        leave.setLeaveType(dto.getLeaveType());
+        leave.setReason(dto.getReason());
+        leave.setStatus("REVIEW");
+        leave.setAppliedDate(LocalDate.now());
+        Leave saved = leaveRepository.save(leave);
+        log.info("Leave applied: employeeId={}, days={}, type={}",
+                dto.getEmployeeId(), days, dto.getLeaveType());
+        return saved;
+    }
+    public List<Leave> getUserLeaves(Long employeeId) {
+        return leaveRepository.findByEmployeeId(employeeId);
+    }
+    public List<Leave> getPendingLeaves() {
+        return leaveRepository.findByStatus("REVIEW");
+    }
+    public List<Leave> getAllLeaves() {
+        return leaveRepository.findAll();
+    }
+    public Leave updateStatus(Long id, String status) {
+        Leave leave = leaveRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Leave not found: id=" + id));
+        leave.setStatus(status);
+        leave.setActionDate(LocalDate.now());
+        Leave updated = leaveRepository.save(leave);
+        log.info("Leave id={} updated to status={}", id, status);
+        return updated;
+    }
+}
+</file>
+
+<file path="src/main/java/com/blisssierra/hrms/service/OtpService.java">
+package com.blisssierra.hrms.service;
+
+import com.blisssierra.hrms.entity.OtpRecord;
+import com.blisssierra.hrms.repository.OtpRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.security.SecureRandom;
+import java.time.LocalDateTime;
+
+/**
+ * OtpService — generates, stores, and validates 6-digit OTPs.
+ *
+ * FIX: Autowired field changed from `Emailservice emailService` (typo)
+ *      to `EmailService emailService` (matches the actual class name).
+ */
+@Service
+public class OtpService {
+
+    private static final Logger log = LoggerFactory.getLogger(OtpService.class);
+    private static final int OTP_VALIDITY_MINUTES = 10;
+
+    @Autowired
+    private OtpRepository otpRepository;
+
+    /**
+     * FIX: was `Emailservice` (lowercase 's') — corrected to `EmailService`.
+     * Spring could not autowire the bean with the wrong class reference,
+     * causing a NoSuchBeanDefinitionException at startup.
+     */
+    @Autowired
+    private EmailService emailService;
+
+    /**
+     * Generate a 6-digit OTP, store it in DB, and email it to the employee.
+     * Any previous unused OTPs for this email are invalidated first.
+     *
+     * @param email        recipient email address
+     * @param employeeName used in the email body greeting
+     * @return the generated OTP string (useful for testing/logging)
+     */
+    public String generateAndSendOtp(String email, String employeeName) {
+        // Invalidate any existing OTPs for this email so only one is active at a time
+        otpRepository.markAllUsedByEmail(email);
+
+        // Generate a cryptographically secure 6-digit OTP
+        String otp = generateSixDigitOtp();
+
+        // Persist to DB with 10-minute expiry window
+        OtpRecord record = new OtpRecord();
+        record.setEmail(email);
+        record.setOtp(otp);
+        record.setExpiresAt(LocalDateTime.now().plusMinutes(OTP_VALIDITY_MINUTES));
+        record.setUsed(false);
+        otpRepository.save(record);
+
+        log.info("Generated OTP for {}: {} (expires in {} min)", email, otp, OTP_VALIDITY_MINUTES);
+
+        // Delegate email delivery to EmailService
+        emailService.sendOtpEmail(email, employeeName, otp);
+
+        return otp;
+    }
+
+    /**
+     * Validate a submitted OTP against the most recent active record.
+     *
+     * Checks:
+     *  1. An unused OTP exists for the given email
+     *  2. It has not expired (within OTP_VALIDITY_MINUTES window)
+     *  3. It matches the submitted value
+     *
+     * On success the OTP record is marked as used so it cannot be reused.
+     *
+     * @param email         the employee's email address
+     * @param submittedOtp  the OTP string entered by the user
+     * @return true if valid, false otherwise
+     */
+    public boolean validateOtp(String email, String submittedOtp) {
+        var optionalRecord = otpRepository
+                .findTopByEmailAndUsedFalseOrderByCreatedAtDesc(email);
+
+        if (optionalRecord.isEmpty()) {
+            log.warn("No active OTP found for email: {}", email);
+            return false;
+        }
+
+        OtpRecord record = optionalRecord.get();
+
+        if (record.isExpired()) {
+            log.warn("OTP expired for email: {}", email);
+            return false;
+        }
+
+        if (!record.getOtp().equals(submittedOtp.trim())) {
+            log.warn("OTP mismatch for email: {} — expected {} got {}", email, record.getOtp(), submittedOtp);
+            return false;
+        }
+
+        // Mark as used so it cannot be replayed
+        record.setUsed(true);
+        otpRepository.save(record);
+        log.info("✅ OTP verified for email: {}", email);
+        return true;
+    }
+
+    /**
+     * Generate a random 6-digit number using a cryptographically secure RNG.
+     * Range: 100000–999999 (always exactly 6 digits).
+     */
+    private String generateSixDigitOtp() {
+        SecureRandom random = new SecureRandom();
+        int num = 100000 + random.nextInt(900000);
+        return String.valueOf(num);
+    }
+}
+</file>
+
+<file path="src/main/java/com/blisssierra/hrms/service/SalaryResetService.java">
+package com.blisssierra.hrms.service;
+
+import com.blisssierra.hrms.entity.Salary;
+import com.blisssierra.hrms.repository.SalaryRepository;
+import com.blisssierra.hrms.repository.EmployeeRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.time.LocalDate;
+
+@Service
+public class SalaryResetService {
+
+    private static final Logger log = LoggerFactory.getLogger(SalaryResetService.class);
+
+    @Autowired
+    private SalaryRepository salaryRepository;
+
+    @Autowired
+    private EmployeeRepository employeeRepository;
+
+    /**
+     * Runs at midnight on the 1st of every month.
+     * Creates fresh salary records for the new month for all employees.
+     * Old month records are preserved for payslip history.
+     */
+    @Scheduled(cron = "0 0 0 1 * *")
+    @Transactional
+    public void resetMonthlySalaries() {
+        LocalDate now = LocalDate.now();
+        int month = now.getMonthValue();
+        int year = now.getYear();
+        log.info("Monthly salary reset triggered for {}/{}", month, year);
+
+        employeeRepository.findAll().forEach(employee -> {
+            // Only create if not already exists for this month
+            boolean exists = salaryRepository
+                    .findByEmployeeIdAndMonthAndYear(employee.getId(), month, year)
+                    .isPresent();
+            if (!exists) {
+                Salary s = new Salary();
+                s.setEmployeeId(employee.getId());
+                s.setMonth(month);
+                s.setYear(year);
+                s.setGrossSalary(employee.getMonthlySalary()); // default gross from employee record
+                s.setEarnedSalary(0);
+                s.setPresentDays(0);
+                salaryRepository.save(s);
+                log.info("  Created fresh salary record for empId={} {}/{}", employee.getEmpId(), month, year);
+            }
+        });
+    }
+}
+</file>
+
+<file path="src/main/java/com/blisssierra/hrms/service/SalaryService.java">
+package com.blisssierra.hrms.service;
+import com.blisssierra.hrms.dto.SalaryResponseDto;
+import com.blisssierra.hrms.entity.Salary;
+import com.blisssierra.hrms.repository.SalaryRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import java.time.LocalDate;
+import java.util.Optional;
+/**
+ * SalaryService — exposes salary query operations.
+ * Write operations (increment on checkout) are handled by AttendanceApiService
+ * to keep the transaction boundary clean.
+ */
+@Service
+public class SalaryService {
+    private static final Logger log = LoggerFactory.getLogger(SalaryService.class);
+    @Autowired
+    private SalaryRepository salaryRepository;
+    /**
+     * Retrieve current month's salary for an employee by their numeric DB id.
+     * Returns a zeroed-out DTO if no record exists yet for this month.
+     */
+    public SalaryResponseDto getCurrentMonthSalary(Long employeeId) {
+        LocalDate now = LocalDate.now();
+        Optional<Salary> opt = salaryRepository
+                .findByEmployeeIdAndMonthAndYear(employeeId, now.getMonthValue(), now.getYear());
+        Salary salary = opt.orElseGet(() -> {
+            Salary s = new Salary();
+            s.setEmployeeId(employeeId);
+            s.setMonth(now.getMonthValue());
+            s.setYear(now.getYear());
+            s.setGrossSalary(0);
+            s.setEarnedSalary(0);
+            s.setPresentDays(0);
+            return s;
+        });
+        return toDto(salary);
+    }
+    private SalaryResponseDto toDto(Salary s) {
+        return new SalaryResponseDto(
+                s.getId(),
+                s.getEmployeeId(),
+                s.getMonth(),
+                s.getYear(),
+                s.getGrossSalary(),
+                s.getEarnedSalary(),
+                s.getPresentDays());
+    }
+}
+</file>
+
+<file path="src/main/resources/application.properties">
+spring.application.name=hrms
+
+# ═══════════════════════════════════════════════════════════════════════════
+#  HRMS Backend — application.properties
+#  Bliss Sierra Software Solutions
+# ═══════════════════════════════════════════════════════════════════════════
+
+# ─── Server ──────────────────────────────────────────────────────────────────
+# Default port 8080 — matches BASE_URL in api/config.js
+server.port=8080
+
+# ─── MySQL Database ───────────────────────────────────────────────────────────
+# Update the URL, username and password to match your local MySQL setup.
+# The database must exist before starting the app (CREATE DATABASE hrms_db;)
+spring.datasource.url=jdbc:mysql://localhost:3306/hrms_db?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+spring.datasource.username=root
+spring.datasource.password=root
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+
+# ─── JPA / Hibernate ─────────────────────────────────────────────────────────
+# update  → keeps existing data, adds/alters columns as needed (safe for dev)
+# create  → drops and recreates all tables on startup (WARNING: data loss)
+# validate → only checks schema, never modifies it (for production)
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=false
+spring.jpa.properties.hibernate.format_sql=true
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQLDialect
+
+# ─── File Upload ──────────────────────────────────────────────────────────────
+# Raise limits to allow 3 face images (each up to ~3 MB) in one multipart call.
+spring.servlet.multipart.enabled=true
+spring.servlet.multipart.max-file-size=10MB
+spring.servlet.multipart.max-request-size=40MB
+
+# ─── Face Image Storage ───────────────────────────────────────────────────────
+# Directory where registration selfies are saved.
+# The path is resolved relative to the working directory when the Spring Boot
+# app starts (i.e. the project root when using `./mvnw spring-boot:run`).
+# FileStorageService converts this to an absolute path internally.
+#
+# Structure created on disk:
+#   uploads/faces/
+#     EMP001/
+#       face_1.jpg
+#       face_2.jpg
+#       face_3.jpg
+#     EMP002/
+#       ...
+#
+# These absolute paths are stored in the `face_image_paths` column of the
+# `employees` table so Python FastAPI can read them directly during check-in.
+app.upload.dir=uploads/faces
+
+# ─── Python FastAPI (Face Verification) ──────────────────────────────────────
+# URL of the Python FastAPI server that performs the actual OpenCV comparison.
+# AttendanceService forwards check-in selfies to:  ${python.face.api.url}/api/face/verify
+#
+# Default assumes Python FastAPI runs locally on port 8000.
+# When running on the same machine:   http://localhost:8000
+# When running in Docker on same host: http://host.docker.internal:8000
+python.face.api.url=http://localhost:8000
+
+# ─── Email (SMTP) — Gmail example ────────────────────────────────────────────
+# Used by EmailService to send OTP emails during signup.
+#
+# Gmail setup:
+#   1. Enable 2-Step Verification on your Google account.
+#   2. Go to Google Account → Security → App Passwords.
+#   3. Generate a password for "Mail" + "Windows Computer" (or any device).
+#   4. Paste the 16-character app password below (no spaces).
+#
+# For other providers change the host/port and auth settings accordingly.
+spring.mail.host=smtp.gmail.com
+spring.mail.port=587
+spring.mail.username=gunduumesh66@gmail.com
+spring.mail.password=lbva ytoo sdfi rkgb
+spring.mail.properties.mail.smtp.auth=true
+spring.mail.properties.mail.smtp.starttls.enable=true
+spring.mail.properties.mail.smtp.starttls.required=true
+spring.mail.properties.mail.smtp.connectiontimeout=10000
+spring.mail.properties.mail.smtp.timeout=10000
+spring.mail.properties.mail.smtp.writetimeout=10000
+
+# ─── Logging ─────────────────────────────────────────────────────────────────
+logging.level.com.blisssierra.hrms=INFO
+logging.level.org.springframework.web=WARN
+logging.level.org.hibernate.SQL=WARN
+</file>
+
+<file path="src/test/java/com/blisssierra/hrms/HrmsApplicationTests.java">
+package com.blisssierra.hrms;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class HrmsApplicationTests {
+
+	@Test
+	void contextLoads() {
+	}
+
+}
+</file>
+
+</files>
